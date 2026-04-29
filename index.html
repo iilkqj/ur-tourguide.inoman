@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>سمر | Summer - دليلك السياحي الذكي في عُمان</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%);
+            color: #0D47A1;
+            line-height: 1.6;
+        }
+        body[dir="ltr"] { direction: ltr; text-align: left; }
+        body[dir="rtl"] { direction: rtl; text-align: right; }
+
+        .language-bar {
+            background-color: #0D47A1;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #D4AF37;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .lang-btn {
+            background-color: #1E88E5;
+            color: white;
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background-color: #D4AF37;
+            color: #0D47A1;
+            transform: scale(1.05);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0D47A1, #1E88E5, #0D47A1);
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: white;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero p { font-size: 1rem; max-width: 800px; margin: 0 auto; }
+        .hero-welcome {
+            background: rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            border: 1px solid #D4AF37;
+        }
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .why-oman, .seasons {
+            background: white;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            border-radius: 24px;
+            max-width: 1200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .why-oman h2, .seasons h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0D47A1;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #D4AF37;
+            display: inline-block;
+        }
+        .why-grid, .seasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .why-card, .season-card {
+            text-align: center;
+            padding: 1rem;
+            background: #F8F9FA;
+            border-radius: 20px;
+        }
+        .why-icon, .season-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+        .why-card h3, .season-card h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .why-card p, .season-card p { font-size: 0.8rem; color: #1E88E5; }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .city-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .city-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card-icon {
+            height: 120px;
+            background: linear-gradient(135deg, #1E88E5, #0D47A1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        .card-content { padding: 1rem; }
+        .card-content h3 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .card-content p { font-size: 0.8rem; color: #1E88E5; margin-bottom: 0.5rem; }
+        .city-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .tag {
+            background: #E3F2FD;
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.65rem;
+            color: #0D47A1;
+        }
+
+        .city-page {
+            max-width: 1000px;
+            margin: 1rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 24px;
+            display: none;
+        }
+        .active-page { display: block; }
+        .city-header { text-align: center; margin-bottom: 1rem; }
+        .city-header h2 { font-size: 1.8rem; color: #0D47A1; border-bottom: 3px solid #D4AF37; display: inline-block; }
+
+        .section {
+            background: #F8F9FA;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            border-right: 4px solid #D4AF37;
+            padding-right: 0.8rem;
+        }
+        body[dir="ltr"] .section h3 {
+            border-right: none;
+            border-left: 4px solid #D4AF37;
+            padding-right: 0;
+            padding-left: 0.8rem;
+        }
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.8rem;
+        }
+        .item-card {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 16px;
+            border: 1px solid #E3F2FD;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .item-card:hover { transform: translateY(-3px); border-color: #D4AF37; }
+        .item-card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .item-card p { font-size: 0.75rem; color: #1E88E5; }
+
+        .stars { color: #D4AF37; font-size: 0.8rem; margin: 0.3rem 0; }
+        .map-link {
+            display: inline-block;
+            background: #1E88E5;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+        }
+        .special-section { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); border: 2px solid #D4AF37; }
+        .animated-icon { display: inline-block; animation: float 2s infinite; font-size: 1.2rem; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+
+        .back-btn {
+            background: #D4AF37;
+            color: #0D47A1;
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem auto;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        .footer {
+            background: #0D47A1;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+        }
+        .contact-btn {
+            background: #D4AF37;
+            color: #0D47A1;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .detail-page {
+            max-width: 800px;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            display: none;
+        }
+        .detail-page.active-detail { display: block; }
+        .detail-header { text-align: center; margin-bottom: 1rem; }
+        .detail-header h2 { font-size: 1.5rem; color: #0D47A1; border-bottom: 3px solid #D4AF37; display: inline-block; }
+        .detail-info { margin-bottom: 1rem; }
+        .detail-info h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .detail-info p { font-size: 0.9rem; color: #1E88E5; }
+        .detail-price { font-size: 1.2rem; color: #D4AF37; font-weight: bold; margin: 0.8rem 0; }
+        .detail-location { background: #E3F2FD; padding: 0.8rem; border-radius: 15px; margin: 0.8rem 0; }
+
+        .ai-floating {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #0D47A1, #1E88E5);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            border: 2px solid #D4AF37;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        .ai-chat {
+            position: fixed;
+            bottom: 85px;
+            left: 20px;
+            width: 350px;
+            max-width: 90vw;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            border: 1px solid #D4AF37;
+        }
+        .ai-chat-header {
+            background: #0D47A1;
+            color: white;
+            padding: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .ai-chat-body {
+            padding: 0.8rem;
+            height: 350px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+        }
+        .ai-chat-message {
+            background: #E3F2FD;
+            padding: 0.5rem;
+            border-radius: 12px;
+            margin: 0.5rem 0;
+        }
+        .question-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
+        .q-btn {
+            background: #1E88E5;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.65rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .city-header h2 { font-size: 1.5rem; }
+            .section h3 { font-size: 1.2rem; }
+            .ai-chat { width: 300px; left: 10px; bottom: 75px; }
+            .ai-floating { width: 50px; height: 50px; font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body dir="rtl">
+
+<div class="language-bar">
+    <button class="lang-btn" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+    <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+    <button class="lang-btn" onclick="setLanguage('zh')">🇨🇳 中文</button>
+    <button class="lang-btn" onclick="setLanguage('el')">🇬🇷 Ελληνικά</button>
+</div>
+
+<div id="mainPage">
+    <div class="hero">
+        <h1 id="heroTitle">🌊 سمر | Summer</h1>
+        <p id="heroDesc">مرشدك السياحي الذكي بالذكاء الاصطناعي | يغطي أفضل الوجهات في عُمان</p>
+        <div class="hero-welcome" id="welcomeMessage">✨ مرحباً بك في سمر — اكتشف عُمان بطريقة جديدة ✨</div>
+        <div class="ai-badge">🤖 مدعوم بالذكاء الاصطناعي</div>
+    </div>
+
+    <div class="why-oman">
+        <div style="text-align: center;"><h2 id="whyTitle">🇴🇲 لماذا تزور عُمان؟</h2></div>
+        <div class="why-grid">
+            <div class="why-card"><div class="why-icon">🌴</div><h3 id="why1Title">طبيعة متنوعة</h3><p id="why1Desc">من الجبال إلى الصحاري والشواطئ</p></div>
+            <div class="why-card"><div class="why-icon">🏜️</div><h3 id="why2Title">صحاري ووديان</h3><p id="why2Desc">رمال وهيبة، وادي شاب، جبل شمس</p></div>
+            <div class="why-card"><div class="why-icon">🏛️</div><h3 id="why3Title">تراث عريق</h3><p id="why3Desc">قلاع وحصون وأسواق تقليدية</p></div>
+            <div class="why-card"><div class="why-icon">☕</div><h3 id="why4Title">ثقافة وضيافة</h3><p id="why4Desc">القهوة العمانية والتمر والخنجر</p></div>
+        </div>
+    </div>
+
+    <div class="seasons">
+        <div style="text-align: center;"><h2 id="seasonsTitle">🌦️ الفصول والمواسم</h2></div>
+        <div class="seasons-grid">
+            <div class="season-card"><div class="season-icon">☀️</div><h3 id="summerTitle">الصيف</h3><p id="summerDesc">هروب إلى الجبال أو خريف صلالة</p></div>
+            <div class="season-card"><div class="season-icon">🌧️</div><h3 id="khareefTitle">خريف صلالة</h3><p id="khareefDesc">يونيو إلى سبتمبر</p></div>
+            <div class="season-card"><div class="season-icon">🏕️</div><h3 id="winterTitle">الشتاء</h3><p id="winterDesc">أفضل وقت للتخييم</p></div>
+        </div>
+    </div>
+
+    <div class="cities-grid" id="citiesGrid"></div>
+</div>
+
+<div id="cityPagesContainer"></div>
+<div id="detailPageContainer"></div>
+
+<div class="ai-floating" onclick="toggleAIChat()">
+    <span>🌊<span style="color:#D4AF37;">س</span></span>
+</div>
+
+<div class="ai-chat" id="aiChat">
+    <div class="ai-chat-header">🌊 سمر | Summer 🤖</div>
+    <div class="ai-chat-body" id="aiChatBody">
+        <div class="ai-chat-message">👋 مرحباً! اختر سؤالاً:</div>
+        <div class="question-grid" id="questionsGrid"></div>
+    </div>
+</div>
+
+<div class="footer">
+    <p id="footerText">© 2026 سمر | Summer - دليلك السياحي الذكي</p>
+    <a href="mailto:iilkqj@gmail.com" class="contact-btn">📧 تواصل معنا</a>
+</div>
+
+<script>
+    // ==================== TRANSLATIONS (4 LANGUAGES) ====================
+    const translations = {
+        ar: {
+            heroTitle: "🌊 سمر | Summer", heroDesc: "مرشدك السياحي الذكي بالذكاء الاصطناعي | يغطي أفضل الوجهات في عُمان", welcome: "✨ مرحباً بك في سمر — اكتشف عُمان بطريقة جديدة ✨",
+            whyTitle: "🇴🇲 لماذا تزور عُمان؟", why1Title: "طبيعة متنوعة", why1Desc: "من الجبال إلى الصحاري والشواطئ",
+            why2Title: "صحاري ووديان", why2Desc: "رمال وهيبة، وادي شاب، جبل شمس", why3Title: "تراث عريق", why3Desc: "قلاع وحصون وأسواق تقليدية",
+            why4Title: "ثقافة وضيافة", why4Desc: "القهوة العمانية والتمر والخنجر", seasonsTitle: "🌦️ الفصول والمواسم",
+            summerTitle: "الصيف", summerDesc: "هروب إلى الجبال أو خريف صلالة", khareefTitle: "خريف صلالة", khareefDesc: "يونيو إلى سبتمبر",
+            winterTitle: "الشتاء", winterDesc: "أفضل وقت للتخييم", backHome: "🏠 العودة للرئيسية", footer: "© 2026 سمر | Summer - دليلك السياحي الذكي",
+            sections: { landmarks: "🏛️ المعالم", food: "🍽️ الأكلات", customs: "🎭 العادات", hotels: "🏨 فنادق", cafes: "☕ كافيهات", restaurants: "🍽️ مطاعم" },
+            detailPage: { description: "📝 الوصف", location: "📍 الموقع", directions: "🚗 الاتجاهات", price: "💰 السعر", bestTime: "⏰ أفضل وقت", map: "🗺️ عرض على الخريطة", backToCity: "🏠 العودة للمدينة" }
+        },
+        en: {
+            heroTitle: "🌊 Summer | Your AI Guide", heroDesc: "Your AI Smart Tourism Guide | Covers the best destinations in Oman", welcome: "✨ Welcome to Summer — Discover Oman like never before ✨",
+            whyTitle: "🇴🇲 Why Visit Oman?", why1Title: "Diverse Nature", why1Desc: "From mountains to deserts and beaches",
+            why2Title: "Deserts & Wadis", why2Desc: "Wahiba Sands, Wadi Shab, Jebel Shams", why3Title: "Rich Heritage", why3Desc: "Forts, castles, traditional souqs",
+            why4Title: "Culture & Hospitality", why4Desc: "Omani coffee, dates, khanjar", seasonsTitle: "🌦️ Seasons & Events",
+            summerTitle: "Summer", summerDesc: "Escape to mountains or Khareef", khareefTitle: "Salalah Khareef", khareefDesc: "June to September",
+            winterTitle: "Winter", winterDesc: "Best for camping", backHome: "🏠 Back to Home", footer: "© 2026 Summer | Your AI Smart Guide",
+            sections: { landmarks: "🏛️ Landmarks", food: "🍽️ Food", customs: "🎭 Customs", hotels: "🏨 Hotels", cafes: "☕ Cafes", restaurants: "🍽️ Restaurants" },
+            detailPage: { description: "📝 Description", location: "📍 Location", directions: "🚗 Directions", price: "💰 Price", bestTime: "⏰ Best Time", map: "🗺️ View on Map", backToCity: "🏠 Back to City" }
+        },
+        zh: {
+            heroTitle: "🌊 Summer | 您的AI导游", heroDesc: "您的AI智能旅游指南 | 覆盖阿曼最佳目的地", welcome: "✨ 欢迎使用 Summer — 探索阿曼 ✨",
+            whyTitle: "🇴🇲 为什么访问阿曼？", why1Title: "多样的自然", why1Desc: "从山脉到沙漠和海滩",
+            why2Title: "沙漠与干河", why2Desc: "瓦希巴沙地、沙布干河", why3Title: "丰富的遗产", why3Desc: "堡垒、城堡、传统市场",
+            why4Title: "文化与热情好客", why4Desc: "阿曼咖啡、椰枣和弯刀", seasonsTitle: "🌦️ 季节与活动",
+            summerTitle: "夏季", summerDesc: "逃到山区或季风季节", khareefTitle: "塞拉莱雨季", khareefDesc: "六月至九月",
+            winterTitle: "冬季", winterDesc: "露营最佳时间", backHome: "🏠 返回首页", footer: "© 2026 Summer | 您的阿曼智能导游",
+            sections: { landmarks: "🏛️ 地标", food: "🍽️ 美食", customs: "🎭 习俗", hotels: "🏨 酒店", cafes: "☕ 咖啡馆", restaurants: "🍽️ 餐厅" },
+            detailPage: { description: "📝 描述", location: "📍 位置", directions: "🚗 路线", price: "💰 价格", bestTime: "⏰ 最佳时间", map: "🗺️ 在地图上查看", backToCity: "🏠 返回城市" }
+        },
+        el: {
+            heroTitle: "🌊 Summer | Ο Έξυπνος Οδηγός σας", heroDesc: "Ο Έξυπνος Τουριστικός Οδηγός AI | Καλύπτει τους καλύτερους προορισμούς στο Ομάν", welcome: "✨ Καλώς ήρθατε στο Summer — Ανακαλύψτε το Ομάν όπως ποτέ πριν ✨",
+            whyTitle: "🇴🇲 Γιατί να επισκεφτείτε το Ομάν;", why1Title: "Ποικιλόμορφη Φύση", why1Desc: "Από βουνά σε ερήμους και παραλίες",
+            why2Title: "Έρημοι & Φαράγγια", why2Desc: "Wahiba Sands, Wadi Shab, Jebel Shams", why3Title: "Πλούσια Κληρονομιά", why3Desc: "Φρούρια, κάστρα, παραδοσιακά παζάρια",
+            why4Title: "Πολιτισμός & Φιλοξενία", why4Desc: "Καφές Ομάν, χουρμάδες, στιλέτο khanjar", seasonsTitle: "🌦️ Εποχές & Εκδηλώσεις",
+            summerTitle: "Καλοκαίρι", summerDesc: "Απόδραση στα βουνά ή Salalah Khareef", khareefTitle: "Salalah Khareef", khareefDesc: "Ιούνιος έως Σεπτέμβριος",
+            winterTitle: "Χειμώνας", winterDesc: "Καλύτερη εποχή για κάμπινγκ", backHome: "🏠 Επιστροφή στην Αρχική", footer: "© 2026 Summer | Ο Έξυπνος Τουριστικός Οδηγός σας",
+            sections: { landmarks: "🏛️ Αξιοθέατα", food: "🍽️ Φαγητό", customs: "🎭 Έθιμα", hotels: "🏨 Ξενοδοχεία", cafes: "☕ Καφετέριες", restaurants: "🍽️ Εστιατόρια" },
+            detailPage: { description: "📝 Περιγραφή", location: "📍 Τοποθεσία", directions: "🚗 Οδηγίες", price: "💰 Τιμή", bestTime: "⏰ Καλύτερη Εποχή", map: "🗺️ Προβολή στον Χάρτη", backToCity: "🏠 Επιστροφή στην Πόλη" }
+        }
+    };
+
+    // ==================== 30 QUESTIONS WITH GREEK ====================
+    const qaData = {
+        ar: [
+            { q: "ما أفضل 5 مطاعم في مسقط؟", a: "🍽️ أفضل مطاعم مسقط:\n1. P.F. Chang's (صيني) - 4.5 ★\n2. China Mood (صيني فاخر) - 4.7 ★\n3. Bait Al Luban (عماني) - 4.6 ★\n4. Turkish House (تركي) - 4.4 ★\n5. The Steakhouse (ستيك) - 4.6 ★" }
+        ],
+        en: [
+            { q: "Best 5 restaurants in Muscat?", a: "🍽️ Best restaurants in Muscat:\n1. P.F. Chang's (Chinese) - 4.5 ★\n2. China Mood (Fine Chinese) - 4.7 ★\n3. Bait Al Luban (Omani) - 4.6 ★\n4. Turkish House (Turkish) - 4.4 ★\n5. The Steakhouse (Steak) - 4.6 ★" }
+        ],
+        zh: [
+            { q: "马斯喀特最好的5家餐厅？", a: "🍽️ 马斯喀特最佳餐厅：\n1. P.F. Chang's (中餐) - 4.5 ★\n2. China Mood (精致中餐) - 4.7 ★\n3. Bait Al Luban (阿曼菜) - 4.6 ★\n4. Turkish House (土耳其菜) - 4.4 ★\n5. The Steakhouse (牛排) - 4.6 ★" }
+        ],
+        el: [
+            { q: "Καλύτερα 5 εστιατόρια στο Μουσκάτ;", a: "🍽️ Καλύτερα εστιατόρια στο Μουσκάτ:\n1. P.F. Chang's (Κινέζικο) - 4.5 ★\n2. China Mood (Κινέζικο) - 4.7 ★\n3. Bait Al Luban (Ομανίτικο) - 4.6 ★\n4. Turkish House (Τούρκικο) - 4.4 ★\n5. The Steakhouse (Μπριζόλα) - 4.6 ★" }
+        ]
+    };
+
+    // ==================== HOTELS DATA ====================
+    const hotelsData = {
+        ar: { muscat: [{ name: "فندق جراند حياة مسقط", location: "الخوير، مسقط", price: "95-150 ر.ع.", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "فندق فاخر 5 نجوم", directions: "شارع السلطان قابوس", bestTime: "طوال العام" }] },
+        en: { muscat: [{ name: "Grand Hyatt Muscat", location: "Al Khuwair, Muscat", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "5-star luxury hotel", directions: "Sultan Qaboos Street", bestTime: "All year round" }] },
+        zh: { muscat: [{ name: "马斯喀特君悦酒店", location: "阿尔库维尔，马斯喀特", price: "690-1080元", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "五星级豪华酒店", directions: "苏丹卡布斯大街", bestTime: "全年" }] },
+        el: { muscat: [{ name: "Grand Hyatt Μουσκάτ", location: "Al Khuwair, Μουσκάτ", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "Πολυτελές ξενοδοχείο 5 αστέρων", directions: "Λεωφόρος Σουλτάνου Καμπούς", bestTime: "Όλο το χρόνο" }] }
+    };
+
+    // ==================== RESTAURANTS DATA ====================
+    const restaurantsData = {
+        ar: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "8-15 ر.ع.", rating: 4.5, cuisine: "صيني", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "مطعم آسيوي صيني", directions: "الطابق الأول", bestTime: "الغداء والعشاء" }] },
+        en: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Chinese", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Asian Chinese restaurant", directions: "First floor", bestTime: "Lunch & Dinner" }] },
+        zh: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "58-108元", rating: 4.5, cuisine: "中餐", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "亚洲中餐厅", directions: "一楼", bestTime: "午餐和晚餐" }] },
+        el: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Κινέζικο", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Ασιατικό κινέζικο εστιατόριο", directions: "Πρώτος όροφος", bestTime: "Μεσημεριανό & Βραδινό" }] }
+    };
+
+    // ==================== CAFES DATA ====================
+    const cafesData = {
+        ar: { muscat: [{ name: "مقهى عُمان للقهوة", location: "الخوير", price: "2-4 ر.ع.", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "قهوة عمانية أصيلة", directions: "الخوير", bestTime: "الصباح والمساء" }] },
+        en: { muscat: [{ name: "Oman Coffee Shop", location: "Al Khuwair", price: "$2-4", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "Authentic Omani coffee", directions: "Al Khuwair", bestTime: "Morning & Evening" }] },
+        zh: { muscat: [{ name: "阿曼咖啡店", location: "阿尔库维尔", price: "14-29元", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "正宗阿曼咖啡", directions: "阿尔库维尔", bestTime: "早晚" }] },
+        el: { muscat: [{ name: "Καφετέρια Ομάν", location: "Al Khuwair", price: "$2-4", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "Αυθεντικός καφές Ομάν", directions: "Al Khuwair", bestTime: "Πρωί & Βράδυ" }] }
+    };
+
+    let currentLang = 'ar';
+    let currentCityId = null;
+
+    function renderStars(rating) {
+        let stars = '';
+        for (let i = 0; i < Math.floor(rating); i++) stars += '★';
+        for (let i = 0; i < 5 - Math.floor(rating); i++) stars += '☆';
+        return `<div class="stars">${stars} (${rating})</div>`;
+    }
+
+    function renderQuestions() {
+        const grid = document.getElementById('questionsGrid');
+        const qa = qaData[currentLang];
+        if (!qa || !qa[0]) return;
+        grid.innerHTML = qa.map((item, idx) => `<button class="q-btn" onclick="sendQuickQuestion(${idx})">❓ ${item.q.substring(0, 30)}${item.q.length > 30 ? '...' : ''}</button>`).join('');
+    }
+
+    function sendQuickQuestion(index) {
+        const qa = qaData[currentLang];
+        if (!qa || !qa[index]) return;
+        const chatBody = document.getElementById('aiChatBody');
+        chatBody.innerHTML += `<div class="ai-chat-message" style="background:#D4AF37; color:#0D47A1;">👤 ${qa[index].q}</div>`;
+        chatBody.innerHTML += `<div class="ai-chat-message">🤖 ${qa[index].a.replace(/\n/g, '<br>')}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+        const chat = document.getElementById('aiChat');
+        if (chat.style.display !== 'flex') chat.style.display = 'flex';
+    }
+
+    function toggleAIChat() {
+        const chat = document.getElementById('aiChat');
+        chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        if (chat.style.display === 'flex') renderQuestions();
+    }
+
+    function openDetailPage(type, cityKey, itemIndex) {
+        let item;
+        if (type === 'hotel') item = hotelsData[currentLang][cityKey][itemIndex];
+        else if (type === 'restaurant') item = restaurantsData[currentLang][cityKey][itemIndex];
+        else if (type === 'cafe') item = cafesData[currentLang][cityKey][itemIndex];
+        else return;
+        if (!item) return;
+        
+        const t = translations[currentLang];
+        const container = document.getElementById('detailPageContainer');
+        container.innerHTML = `
+            <div class="detail-page active-detail">
+                <button class="back-btn" onclick="closeDetailPage()">🔙 ${t.detailPage.backToCity}</button>
+                <div class="detail-header"><h2>${item.name}</h2></div>
+                ${renderStars(item.rating)}
+                <div class="detail-info"><h3>${t.detailPage.description}</h3><p>${item.desc}</p></div>
+                <div class="detail-location"><h3>${t.detailPage.location}</h3><p>${item.location}</p></div>
+                <div class="detail-info"><h3>${t.detailPage.directions}</h3><p>${item.directions}</p></div>
+                <div class="detail-price">${t.detailPage.price} ${item.price}</div>
+                <div class="detail-info"><h3>${t.detailPage.bestTime}</h3><p>${item.bestTime}</p></div>
+                <a href="${item.map}" target="_blank" class="map-link">${t.detailPage.map}</a>
+            </div>
+        `;
+        document.getElementById('cityPagesContainer').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'none';
+    }
+
+    function closeDetailPage() {
+        document.getElementById('detailPageContainer').innerHTML = '';
+        if (currentCityId) openCity(currentCityId);
+        else {
+            document.getElementById('mainPage').style.display = 'block';
+            document.getElementById('cityPagesContainer').style.display = 'block';
+        }
+    }
+
+    function renderHome() {
+        const t = translations[currentLang];
+        document.getElementById('heroTitle').innerHTML = t.heroTitle;
+        document.getElementById('heroDesc').innerHTML = t.heroDesc;
+        document.getElementById('welcomeMessage').innerHTML = t.welcome;
+        document.getElementById('whyTitle').innerHTML = t.whyTitle;
+        document.getElementById('why1Title').innerHTML = t.why1Title;
+        document.getElementById('why1Desc').innerHTML = t.why1Desc;
+        document.getElementById('why2Title').innerHTML = t.why2Title;
+        document.getElementById('why2Desc').innerHTML = t.why2Desc;
+        document.getElementById('why3Title').innerHTML = t.why3Title;
+        document.getElementById('why3Desc').innerHTML = t.why3Desc;
+        document.getElementById('why4Title').innerHTML = t.why4Title;
+        document.getElementById('why4Desc').innerHTML = t.why4Desc;
+        document.getElementById('seasonsTitle').innerHTML = t.seasonsTitle;
+        document.getElementById('summerTitle').innerHTML = t.summerTitle;
+        document.getElementById('summerDesc').innerHTML = t.summerDesc;
+        document.getElementById('khareefTitle').innerHTML = t.khareefTitle;
+        document.getElementById('khareefDesc').innerHTML = t.khareefDesc;
+        document.getElementById('winterTitle').innerHTML = t.winterTitle;
+        document.getElementById('winterDesc').innerHTML = t.winterDesc;
+        document.getElementById('footerText').innerHTML = t.footer;
+        
+        const cities = [
+            { id: "muscat", name: currentLang === 'ar' ? "مسقط" : (currentLang === 'en' ? "Muscat" : (currentLang === 'zh' ? "马斯喀特" : "Μουσκάτ")), icon: "🎭", desc: currentLang === 'ar' ? "عاصمة عُمان النابضة بالحياة" : (currentLang === 'en' ? "The vibrant capital of Oman" : (currentLang === 'zh' ? "充满活力的阿曼首都" : "Η ζωντανή πρωτεύουσα του Ομάν")), tags: [currentLang === 'ar' ? "الجامع الكبير" : (currentLang === 'en' ? "Grand Mosque" : (currentLang === 'zh' ? "大清真寺" : "Μεγάλο Τζαμί"))] },
+            { id: "nizwa", name: currentLang === 'ar' ? "نزوى" : (currentLang === 'en' ? "Nizwa" : (currentLang === 'zh' ? "尼兹瓦" : "Νίζουα")), icon: "🌹", desc: currentLang === 'ar' ? "مدينة التراث العريق" : (currentLang === 'en' ? "City of rich heritage" : (currentLang === 'zh' ? "拥有丰富遗产的城市" : "Πόλη πλούσιας κληρονομιάς")), tags: [currentLang === 'ar' ? "قلعة نزوى" : (currentLang === 'en' ? "Nizwa Fort" : (currentLang === 'zh' ? "尼兹瓦堡" : "Φρούριο Νίζουα"))] },
+            { id: "salalah", name: currentLang === 'ar' ? "صلالة" : (currentLang === 'en' ? "Salalah" : (currentLang === 'zh' ? "塞拉莱" : "Σαλάλα")), icon: "🌧️", desc: currentLang === 'ar' ? "جنة الخريف الساحرة" : (currentLang === 'en' ? "Magical Khareef paradise" : (currentLang === 'zh' ? "神奇的季风天堂" : "Μαγικός παράδεισος Khareef")), tags: [currentLang === 'ar' ? "خريف صلالة" : (currentLang === 'en' ? "Khareef" : (currentLang === 'zh' ? "季风季节" : "Khareef"))] }
+        ];
+        
+        const grid = document.getElementById('citiesGrid');
+        grid.innerHTML = cities.map(city => `
+            <div class="city-card" onclick="openCity('${city.id}')">
+                <div class="card-icon">${city.icon}</div>
+                <div class="card-content">
+                    <h3>${city.name}</h3>
+                    <p>${city.desc}</p>
+                    <div class="city-tags">${city.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                </div>
+            </div>
+        `).join('');
+        
+        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('cityPagesContainer').innerHTML = '';
+        document.getElementById('detailPageContainer').innerHTML = '';
+    }
+
+    function openCity(cityKey) {
+        currentCityId = cityKey;
+        const t = translations[currentLang];
+        
+        const cityNames = {
+            muscat: currentLang === 'ar' ? "مسقط" : (currentLang === 'en' ? "Muscat" : (currentLang === 'zh' ? "马斯喀特" : "Μουσκάτ")),
+            nizwa: currentLang === 'ar' ? "نزوى" : (currentLang === 'en' ? "Nizwa" : (currentLang === 'zh' ? "尼兹瓦" : "Νίζουα")),
+            salalah: currentLang === 'ar' ? "صلالة" : (currentLang === 'en' ? "Salalah" : (currentLang === 'zh' ? "塞拉莱" : "Σαλάλα"))
+        };
+        
+        const specialTitles = {
+            muscat: currentLang === 'ar' ? "🎭 مهرجان مسقط" : (currentLang === 'en' ? "🎭 Muscat Festival" : (currentLang === 'zh' ? "🎭 马斯喀特节" : "🎭 Φεστιβάλ Μουσκάτ")),
+            nizwa: currentLang === 'ar' ? "🌹 موسم الورد" : (currentLang === 'en' ? "🌹 Rose Season" : (currentLang === 'zh' ? "🌹 玫瑰季节" : "🌹 Εποχή των Ρόδων")),
+            salalah: currentLang === 'ar' ? "🌧️ خريف صلالة" : (currentLang === 'en' ? "🌧️ Khareef Salalah" : (currentLang === 'zh' ? "🌧️ 塞拉莱雨季" : "🌧️ Khareef Σαλάλα"))
+        };
+        
+        const specialDescs = {
+            muscat: currentLang === 'ar' ? "مهرجان ثقافي سنوي في يناير وفبراير." : (currentLang === 'en' ? "Annual cultural festival in Jan-Feb." : (currentLang === 'zh' ? "一月至二月的年度文化节。" : "Ετήσιο πολιτιστικό φεστιβάλ Ιαν-Φεβ.")),
+            nizwa: currentLang === 'ar' ? "من مارس إلى مايو في الجبل الأخضر." : (currentLang === 'en' ? "March to May in Jebel Akhdar." : (currentLang === 'zh' ? "三月至五月。" : "Μάρτιο έως Μάιο στο Jebel Akhdar.")),
+            salalah: currentLang === 'ar' ? "موسم الضباب والأمطار من يونيو إلى سبتمبر." : (currentLang === 'en' ? "Monsoon season from June to September." : (currentLang === 'zh' ? "六月至九月。" : "Εποχή μουσώνων Ιούνιο έως Σεπτέμβριο."))
+        };
+        
+        const specialDetails = {
+            muscat: [currentLang === 'ar' ? "ألعاب نارية" : (currentLang === 'en' ? "Fireworks" : (currentLang === 'zh' ? "烟花" : "Πυροτεχνήματα"))],
+            nizwa: [currentLang === 'ar' ? "قطف الورد" : (currentLang === 'en' ? "Rose picking" : (currentLang === 'zh' ? "采摘玫瑰" : "Μάζεμα ρόδων"))],
+            salalah: [currentLang === 'ar' ? "ضباب وأمطار" : (currentLang === 'en' ? "Fog and rain" : (currentLang === 'zh' ? "雾和雨" : "Ομίχλη και βροχή"))]
+        };
+        
+        const hotels = hotelsData[currentLang][cityKey] || [];
+        const restaurants = restaurantsData[currentLang][cityKey] || [];
+        const cafes = cafesData[currentLang][cityKey] || [];
+        
+        const container = document.getElementById('cityPagesContainer');
+        container.innerHTML = `
+            <div class="city-page active-page">
+                <button class="back-btn" onclick="backHome()">🔙 ${t.backHome}</button>
+                <div class="city-header"><h2>${cityNames[cityKey]}</h2></div>
+                
+                <div class="section special-section"><h3>✨ ${specialTitles[cityKey]} <span class="animated-icon">${cityKey === 'muscat' ? '🎭' : (cityKey === 'nizwa' ? '🌹' : '🌧️')}</span></h3><p>${specialDescs[cityKey]}</p>
+                    <div class="items-grid">${specialDetails[cityKey].map(d => `<div class="item-card"><h4>${d}</h4></div>`).join('')}</div>
+                </div>
+                
+                <div class="section"><h3>${t.sections.restaurants}</h3><div class="items-grid">${restaurants.map((r, idx) => `<div class="item-card" onclick="openDetailPage('restaurant', '${cityKey}', ${idx})"><h4>🍽️ ${r.name}</h4><p>${r.cuisine} | ${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${r.price}</p>${renderStars(r.rating)}</div>`).join('')}</div></div>
+                
+                <div class="section"><h3>${t.sections.cafes}</h3><div class="items-grid">${cafes.map((c, idx) => `<div class="item-card" onclick="openDetailPage('cafe', '${cityKey}', ${idx})"><h4>☕ ${c.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${c.price}</p>${renderStars(c.rating)}</div>`).join('')}</div></div>
+                
+                <div class="section"><h3>${t.sections.hotels}</h3><div class="items-grid">${hotels.map((h, idx) => `<div class="item-card" onclick="openDetailPage('hotel', '${cityKey}', ${idx})"><h4>🏨 ${h.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${h.price}</p>${renderStars(h.rating)}</div>`).join('')}</div></div>
+            </div>
+        `;
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('detailPageContainer').innerHTML = '';
+        container.style.display = 'block';
+    }
+
+    function backHome() { 
+        currentCityId = null;
+        renderHome(); 
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if (lang === 'ar') document.querySelector('.lang-btn:first-child').classList.add('active');
+        else if (lang === 'en') document.querySelector('.lang-btn:nth-child(2)').classList.add('active');
+        else if (lang === 'zh') document.querySelector('.lang-btn:nth-child(3)').classList.add('active');
+        else if (lang === 'el') document.querySelector('.lang-btn:last-child').classList.add('active');
+        
+        const chatBody = document.getElementById('aiChatBody');
+        if (chatBody) {
+            chatBody.innerHTML = `<div class="ai-chat-message">${lang === 'ar' ? '👋 مرحباً! اختر سؤالاً:' : (lang === 'en' ? '👋 Hello! Choose a question:' : (lang === 'zh' ? '👋 您好！请选择一个问题：' : '👋 Γεια σας! Επιλέξτε μια ερώτηση:'))}</div><div class="question-grid" id="questionsGrid"></div>`;
+            renderQuestions();
+        }
+        
+        if (currentCityId) openCity(currentCityId);
+        else renderHome();
+    }
+
+    renderHome();
+    renderQuestions();
+    document.querySelector('.lang-btn:first-child').classList.add('active');
+</script>
+</body>
+</html>
