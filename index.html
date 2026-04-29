@@ -443,7 +443,283 @@
         }
     };
 
-    // ==================== QUESTIONS (4 LANGUAGES) ====================
+    // ==================== 10 QUESTIONS PER LANGUAGE ====================
     const qaData = {
-        ar: [{ q: "ما أفضل 5 مطاعم في مسقط؟", a: "🍽️ أفضل مطاعم مسقط:\n1. P.F. Chang's (صيني) - 4.5 ★\n2. China Mood (صيني فاخر) - 4.7 ★\n3. Bait Al Luban (عماني) - 4.6 ★\n4. Turkish House (تركي) - 4.4 ★\n5. The Steakhouse (ستيك) - 4.6 ★" }],
-        en: [{ q: "Best 5 restaurants in Muscat?", a: "🍽️ Best restaurants in Muscat:\n1. P.F. Chang's (Chinese) - 4.5 ★\n2. China Mood (Fine Chinese) - 4.7 ★\n3. Bait Al Luban (Omani) - 4.6 ★\n4. Turkish House (Turkish) - 4.4 ★\n5. The Steakhouse (Steak) - 4.6 ★" }],
+        ar: [
+            { q: "ما أفضل 5 مطاعم في مسقط؟", a: "🍽️ أفضل مطاعم مسقط:\n1. P.F. Chang's (صيني) - 4.5 ★\n2. China Mood (صيني فاخر) - 4.7 ★\n3. Bait Al Luban (عماني) - 4.6 ★\n4. Turkish House (تركي) - 4.4 ★\n5. The Steakhouse (ستيك) - 4.6 ★" },
+            { q: "ما أفضل كافيهات في نزوى؟", a: "☕ أفضل كافيهات نزوى:\n1. مقهى القلعة - 4.5 ★\n2. مقهى السوق التقليدي - 4.3 ★\n3. مقهى الواحة - 4.2 ★\n4. مقهى البيت العماني - 4.4 ★\n5. مقهى الجبل - 4.6 ★" },
+            { q: "ما هي أفضل الفنادق في صلالة؟", a: "🏨 أفضل فنادق صلالة:\n1. الفانات - جي دبليو ماريوت - 4.8 ★\n2. صلالة روتانا - 4.7 ★\n3. كراون بلازا - 4.6 ★\n4. صلالة بيتش - 4.5 ★\n5. هوليدي إن - 4.3 ★" },
+            { q: "ما هي أفضل المعالم السياحية في عمان؟", a: "🏛️ أفضل المعالم:\n1. الجامع الكبير (مسقط)\n2. قلعة نزوى\n3. وادي شاب\n4. الجبل الأخضر\n5. رمال وهيبة" },
+            { q: "متى أفضل وقت لزيارة الجبل الأخضر؟", a: "🌹 أفضل وقت هو مارس إلى مايو (موسم الورد). الطقس معتدل والورود متفتحة." },
+            { q: "كيف أوصل إلى وادي شاب؟", a: "🏞️ من مسقط 1.5 ساعة، ثم قارب صغير (1 ريال)، ثم مشي 40 دقيقة." },
+            { q: "ما هي الأكلات العمانية الشعبية؟", a: "🍖 الشواء العماني، المجبوس، الخبيصة، البلاليط، الحلوى العمانية" },
+            { q: "ما هي العادات العمانية الأصيلة؟", a: "🎭 الخنجر العماني، القهوة العمانية، الرزحة، العازي، الفلاج" },
+            { q: "ما هي الفعاليات السنوية في عمان؟", a: "🎪 مهرجان مسقط (يناير-فبراير)، خريف صلالة (يونيو-سبتمبر)" },
+            { q: "كم تكلفة السفر إلى عمان؟", a: "💰 متوسط التكاليف: تذكرة 150-300 ريال، فندق 30-50 ريال/ليلة" }
+        ],
+        en: [
+            { q: "Best 5 restaurants in Muscat?", a: "🍽️ Best restaurants in Muscat:\n1. P.F. Chang's (Chinese) - 4.5 ★\n2. China Mood (Fine Chinese) - 4.7 ★\n3. Bait Al Luban (Omani) - 4.6 ★\n4. Turkish House (Turkish) - 4.4 ★\n5. The Steakhouse (Steak) - 4.6 ★" },
+            { q: "Best cafes in Nizwa?", a: "☕ Best cafes in Nizwa:\n1. Al Qala'a Cafe - 4.5 ★\n2. Traditional Souq Cafe - 4.3 ★\n3. Al Waha Cafe - 4.2 ★\n4. Omani House Cafe - 4.4 ★\n5. Mountain Cafe - 4.6 ★" },
+            { q: "Best hotels in Salalah?", a: "🏨 Best hotels in Salalah:\n1. Al Fanar - JW Marriott - 4.8 ★\n2. Salalah Rotana - 4.7 ★\n3. Crowne Plaza - 4.6 ★\n4. Salalah Beach Hotel - 4.5 ★\n5. Holiday Inn - 4.3 ★" },
+            { q: "Best tourist attractions in Oman?", a: "🏛️ Best attractions:\n1. Grand Mosque (Muscat)\n2. Nizwa Fort\n3. Wadi Shab\n4. Jebel Akhdar\n5. Wahiba Sands" },
+            { q: "Best time to visit Jebel Akhdar?", a: "🌹 March to May (Rose Season). Mild weather with blooming roses." },
+            { q: "How to get to Wadi Shab?", a: "🏞️ 1.5h from Muscat, small boat (1 OMR), 40min hike." },
+            { q: "What are Omani traditional foods?", a: "🍖 Shuwa, Majboos, Khabeesa, Balaleet, Omani Halwa" },
+            { q: "What are authentic Omani customs?", a: "🎭 Khanjar, Omani coffee, Al Razha, Al Azi, Falaj" },
+            { q: "Annual events in Oman?", a: "🎪 Muscat Festival (Jan-Feb), Salalah Khareef (Jun-Sep)" },
+            { q: "Travel cost to Oman?", a: "💰 Flight $150-300, hotel $30-50/night" }
+        ],
+        zh: [
+            { q: "马斯喀特最好的5家餐厅？", a: "🍽️ 马斯喀特最佳餐厅：\n1. P.F. Chang's (中餐) - 4.5 ★\n2. China Mood (精致中餐) - 4.7 ★\n3. Bait Al Luban (阿曼菜) - 4.6 ★\n4. Turkish House (土耳其菜) - 4.4 ★\n5. The Steakhouse (牛排) - 4.6 ★" },
+            { q: "尼兹瓦最好的咖啡馆？", a: "☕ 尼兹瓦最佳咖啡馆：\n1. 堡垒咖啡馆 - 4.5 ★\n2. 传统集市咖啡馆 - 4.3 ★\n3. 绿洲咖啡馆 - 4.2 ★\n4. 阿曼之家咖啡馆 - 4.4 ★\n5. 山景咖啡馆 - 4.6 ★" },
+            { q: "塞拉莱最好的酒店？", a: "🏨 塞拉莱最佳酒店：\n1. Al Fanar - JW万豪 - 4.8 ★\n2. 塞拉莱罗塔纳 - 4.7 ★\n3. 皇冠假日 - 4.6 ★\n4. 塞拉莱海滩酒店 - 4.5 ★\n5. 假日酒店 - 4.3 ★" },
+            { q: "阿曼最好的旅游景点？", a: "🏛️ 最佳景点：\n1. 大清真寺 (马斯喀特)\n2. 尼兹瓦堡\n3. 沙布干河\n4. 绿色山脈\n5. 瓦希巴沙地" },
+            { q: "什么时候去绿色山脈最好？", a: "🌹 三月至五月（玫瑰季节）。天气温和，玫瑰盛开。" },
+            { q: "如何前往沙布干河？", a: "🏞️ 从马斯喀特1.5小时，乘小船（1阿曼里亚尔），徒步40分钟。" },
+            { q: "阿曼传统美食有哪些？", a: "🍖 舒瓦烤肉、马吉布斯、哈比萨、巴拉利特、阿曼哈尔瓦" },
+            { q: "正宗阿曼习俗？", a: "🎭 阿曼弯刀、阿曼咖啡、阿尔拉兹哈、阿尔阿齐、法拉吉" },
+            { q: "阿曼年度活动？", a: "🎪 马斯喀特节（1-2月），塞拉莱季风季节（6-9月）" },
+            { q: "阿曼旅行费用？", a: "💰 机票150-300美元，酒店30-50美元/晚" }
+        ],
+        el: [
+            { q: "Καλύτερα 5 εστιατόρια στο Μουσκάτ;", a: "🍽️ Καλύτερα εστιατόρια στο Μουσκάτ:\n1. P.F. Chang's (Κινέζικο) - 4.5 ★\n2. China Mood (Κινέζικο) - 4.7 ★\n3. Bait Al Luban (Ομανίτικο) - 4.6 ★\n4. Turkish House (Τούρκικο) - 4.4 ★\n5. The Steakhouse (Μπριζόλα) - 4.6 ★" },
+            { q: "Καλύτερες καφετέριες στη Νίζουα;", a: "☕ Καλύτερες καφετέριες στη Νίζουα:\n1. Al Qala'a Cafe - 4.5 ★\n2. Traditional Souq Cafe - 4.3 ★\n3. Al Waha Cafe - 4.2 ★\n4. Omani House Cafe - 4.4 ★\n5. Mountain Cafe - 4.6 ★" },
+            { q: "Καλύτερα ξενοδοχεία στη Σαλάλα;", a: "🏨 Καλύτερα ξενοδοχεία στη Σαλάλα:\n1. Al Fanar - JW Marriott - 4.8 ★\n2. Salalah Rotana - 4.7 ★\n3. Crowne Plaza - 4.6 ★\n4. Salalah Beach Hotel - 4.5 ★\n5. Holiday Inn - 4.3 ★" },
+            { q: "Καλύτερα αξιοθέατα στο Ομάν;", a: "🏛️ Καλύτερα αξιοθέατα:\n1. Μεγάλο Τζαμί (Μουσκάτ)\n2. Φρούριο Νίζουα\n3. Wadi Shab\n4. Jebel Akhdar\n5. Wahiba Sands" },
+            { q: "Καλύτερη εποχή για Jebel Akhdar;", a: "🌹 Μάρτιο έως Μάιο (Εποχή των Ρόδων). Ήπιος καιρός." },
+            { q: "Πώς να πάτε στο Wadi Shab;", a: "🏞️ 1.5 ώρα από Μουσκάτ, μικρή βάρκα (1 OMR), 40 λεπτά πεζοπορία." },
+            { q: "Παραδοσιακά φαγητά Ομάν;", a: "🍖 Shuwa, Majboos, Khabeesa, Balaleet, Omani Halwa" },
+            { q: "Αυθεντικά έθιμα Ομάν;", a: "🎭 Στιλέτο Khanjar, καφές Ομάν, Al Razha, Al Azi, Falaj" },
+            { q: "Ετήσιες εκδηλώσεις στο Ομάν;", a: "🎪 Φεστιβάλ Μουσκάτ (Ιαν-Φεβ), Khareef Σαλάλα (Ιουν-Σεπ)" },
+            { q: "Κόστος ταξιδιού στο Ομάν;", a: "💰 Αεροπορικά $150-300, ξενοδοχείο $30-50/βράδυ" }
+        ]
+    };
+
+    // ==================== HOTELS DATA ====================
+    const hotelsData = {
+        ar: { muscat: [{ name: "فندق جراند حياة مسقط", location: "الخوير، مسقط", price: "95-150 ر.ع.", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "فندق فاخر 5 نجوم", directions: "شارع السلطان قابوس", bestTime: "طوال العام" }] },
+        en: { muscat: [{ name: "Grand Hyatt Muscat", location: "Al Khuwair, Muscat", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "5-star luxury hotel", directions: "Sultan Qaboos Street", bestTime: "All year round" }] },
+        zh: { muscat: [{ name: "马斯喀特君悦酒店", location: "阿尔库维尔，马斯喀特", price: "690-1080元", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "五星级豪华酒店", directions: "苏丹卡布斯大街", bestTime: "全年" }] },
+        el: { muscat: [{ name: "Grand Hyatt Μουσκάτ", location: "Al Khuwair, Μουσκάτ", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "Πολυτελές ξενοδοχείο 5 αστέρων", directions: "Λεωφόρος Σουλτάνου Καμπούς", bestTime: "Όλο το χρόνο" }] }
+    };
+
+    // ==================== RESTAURANTS DATA ====================
+    const restaurantsData = {
+        ar: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "8-15 ر.ع.", rating: 4.5, cuisine: "صيني", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "مطعم آسيوي صيني", directions: "الطابق الأول", bestTime: "الغداء والعشاء" }] },
+        en: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Chinese", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Asian Chinese restaurant", directions: "First floor", bestTime: "Lunch & Dinner" }] },
+        zh: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "58-108元", rating: 4.5, cuisine: "中餐", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "亚洲中餐厅", directions: "一楼", bestTime: "午餐和晚餐" }] },
+        el: { muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Κινέζικο", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Ασιατικό κινέζικο εστιατόριο", directions: "Πρώτος όροφος", bestTime: "Μεσημεριανό & Βραδινό" }] }
+    };
+
+    // ==================== CAFES DATA ====================
+    const cafesData = {
+        ar: { muscat: [{ name: "مقهى عُمان للقهوة", location: "الخوير", price: "2-4 ر.ع.", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "قهوة عمانية أصيلة", directions: "الخوير", bestTime: "الصباح والمساء" }] },
+        en: { muscat: [{ name: "Oman Coffee Shop", location: "Al Khuwair", price: "$2-4", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "Authentic Omani coffee", directions: "Al Khuwair", bestTime: "Morning & Evening" }] },
+        zh: { muscat: [{ name: "阿曼咖啡店", location: "阿尔库维尔", price: "14-29元", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "正宗阿曼咖啡", directions: "阿尔库维尔", bestTime: "早晚" }] },
+        el: { muscat: [{ name: "Καφετέρια Ομάν", location: "Al Khuwair", price: "$2-4", rating: 4.6, map: "https://maps.google.com/?q=Oman+Coffee+Shop+Muscat", desc: "Αυθεντικός καφές Ομάν", directions: "Al Khuwair", bestTime: "Πρωί & Βράδυ" }] }
+    };
+
+    let currentLang = 'ar';
+    let currentCityId = null;
+
+    function renderStars(rating) {
+        let stars = '';
+        for (let i = 0; i < Math.floor(rating); i++) stars += '★';
+        for (let i = 0; i < 5 - Math.floor(rating); i++) stars += '☆';
+        return `<div class="stars">${stars} (${rating})</div>`;
+    }
+
+    function renderQuestions() {
+        const grid = document.getElementById('questionsGrid');
+        const qa = qaData[currentLang];
+        if (!qa) return;
+        grid.innerHTML = qa.map((item, idx) => `<button class="q-btn" onclick="sendQuickQuestion(${idx})">❓ ${item.q.substring(0, 35)}${item.q.length > 35 ? '...' : ''}</button>`).join('');
+    }
+
+    function sendQuickQuestion(index) {
+        const qa = qaData[currentLang];
+        if (!qa || !qa[index]) return;
+        const chatBody = document.getElementById('aiChatBody');
+        chatBody.innerHTML += `<div class="ai-chat-message" style="background:#D4AF37; color:#0D47A1;">👤 ${qa[index].q}</div>`;
+        chatBody.innerHTML += `<div class="ai-chat-message">🤖 ${qa[index].a.replace(/\n/g, '<br>')}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+        const chat = document.getElementById('aiChat');
+        if (chat.style.display !== 'flex') chat.style.display = 'flex';
+    }
+
+    function toggleAIChat() {
+        const chat = document.getElementById('aiChat');
+        chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        if (chat.style.display === 'flex') renderQuestions();
+    }
+
+    function openDetailPage(type, cityKey, itemIndex) {
+        let item;
+        if (type === 'hotel') item = hotelsData[currentLang][cityKey][itemIndex];
+        else if (type === 'restaurant') item = restaurantsData[currentLang][cityKey][itemIndex];
+        else if (type === 'cafe') item = cafesData[currentLang][cityKey][itemIndex];
+        else return;
+        if (!item) return;
+        
+        const t = translations[currentLang];
+        const container = document.getElementById('detailPageContainer');
+        container.innerHTML = `
+            <div class="detail-page active-detail">
+                <button class="back-btn" onclick="closeDetailPage()">🔙 ${t.detailPage.backToCity}</button>
+                <div class="detail-header"><h2>${item.name}</h2></div>
+                ${renderStars(item.rating)}
+                <div class="detail-info"><h3>${t.detailPage.description}</h3><p>${item.desc}</p></div>
+                <div class="detail-location"><h3>${t.detailPage.location}</h3><p>${item.location}</p></div>
+                <div class="detail-info"><h3>${t.detailPage.directions}</h3><p>${item.directions}</p></div>
+                <div class="detail-price">${t.detailPage.price} ${item.price}</div>
+                <div class="detail-info"><h3>${t.detailPage.bestTime}</h3><p>${item.bestTime}</p></div>
+                <a href="${item.map}" target="_blank" class="map-link">${t.detailPage.map}</a>
+            </div>
+        `;
+        document.getElementById('cityPagesContainer').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'none';
+    }
+
+    function closeDetailPage() {
+        document.getElementById('detailPageContainer').innerHTML = '';
+        if (currentCityId) openCity(currentCityId);
+        else {
+            document.getElementById('mainPage').style.display = 'block';
+            document.getElementById('cityPagesContainer').style.display = 'block';
+        }
+    }
+
+    function renderHome() {
+        const t = translations[currentLang];
+        document.getElementById('heroTitle').innerHTML = t.heroTitle;
+        document.getElementById('heroDesc').innerHTML = t.heroDesc;
+        document.getElementById('welcomeMessage').innerHTML = t.welcome;
+        document.getElementById('whyTitle').innerHTML = t.whyTitle;
+        document.getElementById('why1Title').innerHTML = t.why1Title;
+        document.getElementById('why1Desc').innerHTML = t.why1Desc;
+        document.getElementById('why2Title').innerHTML = t.why2Title;
+        document.getElementById('why2Desc').innerHTML = t.why2Desc;
+        document.getElementById('why3Title').innerHTML = t.why3Title;
+        document.getElementById('why3Desc').innerHTML = t.why3Desc;
+        document.getElementById('why4Title').innerHTML = t.why4Title;
+        document.getElementById('why4Desc').innerHTML = t.why4Desc;
+        document.getElementById('seasonsTitle').innerHTML = t.seasonsTitle;
+        document.getElementById('summerTitle').innerHTML = t.summerTitle;
+        document.getElementById('summerDesc').innerHTML = t.summerDesc;
+        document.getElementById('khareefTitle').innerHTML = t.khareefTitle;
+        document.getElementById('khareefDesc').innerHTML = t.khareefDesc;
+        document.getElementById('winterTitle').innerHTML = t.winterTitle;
+        document.getElementById('winterDesc').innerHTML = t.winterDesc;
+        document.getElementById('footerText').innerHTML = t.footer;
+        
+        const cities = [
+            { id: "muscat", name: currentLang === 'ar' ? "مسقط" : (currentLang === 'en' ? "Muscat" : (currentLang === 'zh' ? "马斯喀特" : "Μουσκάτ")), icon: "🎭", desc: currentLang === 'ar' ? "عاصمة عُمان النابضة بالحياة" : (currentLang === 'en' ? "The vibrant capital of Oman" : (currentLang === 'zh' ? "充满活力的阿曼首都" : "Η ζωντανή πρωτεύουσα του Ομάν")), tags: [currentLang === 'ar' ? "الجامع الكبير" : (currentLang === 'en' ? "Grand Mosque" : (currentLang === 'zh' ? "大清真寺" : "Μεγάλο Τζαμί"))] },
+            { id: "nizwa", name: currentLang === 'ar' ? "نزوى" : (currentLang === 'en' ? "Nizwa" : (currentLang === 'zh' ? "尼兹瓦" : "Νίζουα")), icon: "🌹", desc: currentLang === 'ar' ? "مدينة التراث العريق" : (currentLang === 'en' ? "City of rich heritage" : (currentLang === 'zh' ? "拥有丰富遗产的城市" : "Πόλη πλούσιας κληρονομιάς")), tags: [currentLang === 'ar' ? "قلعة نزوى" : (currentLang === 'en' ? "Nizwa Fort" : (currentLang === 'zh' ? "尼兹瓦堡" : "Φρούριο Νίζουα"))] },
+            { id: "salalah", name: currentLang === 'ar' ? "صلالة" : (currentLang === 'en' ? "Salalah" : (currentLang === 'zh' ? "塞拉莱" : "Σαλάλα")), icon: "🌧️", desc: currentLang === 'ar' ? "جنة الخريف الساحرة" : (currentLang === 'en' ? "Magical Khareef paradise" : (currentLang === 'zh' ? "神奇的季风天堂" : "Μαγικός παράδεισος Khareef")), tags: [currentLang === 'ar' ? "خريف صلالة" : (currentLang === 'en' ? "Khareef" : (currentLang === 'zh' ? "季风季节" : "Khareef"))] }
+        ];
+        
+        const grid = document.getElementById('citiesGrid');
+        grid.innerHTML = cities.map(city => `
+            <div class="city-card" onclick="openCity('${city.id}')">
+                <div class="card-icon">${city.icon}</div>
+                <div class="card-content">
+                    <h3>${city.name}</h3>
+                    <p>${city.desc}</p>
+                    <div class="city-tags">${city.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                </div>
+            </div>
+        `).join('');
+        
+        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('cityPagesContainer').innerHTML = '';
+        document.getElementById('detailPageContainer').innerHTML = '';
+    }
+
+    function openCity(cityKey) {
+        currentCityId = cityKey;
+        const t = translations[currentLang];
+        
+        const cityNames = {
+            muscat: currentLang === 'ar' ? "مسقط" : (currentLang === 'en' ? "Muscat" : (currentLang === 'zh' ? "马斯喀特" : "Μουσκάτ")),
+            nizwa: currentLang === 'ar' ? "نزوى" : (currentLang === 'en' ? "Nizwa" : (currentLang === 'zh' ? "尼兹瓦" : "Νίζουα")),
+            salalah: currentLang === 'ar' ? "صلالة" : (currentLang === 'en' ? "Salalah" : (currentLang === 'zh' ? "塞拉莱" : "Σαλάλα"))
+        };
+        
+        const specialTitles = {
+            muscat: currentLang === 'ar' ? "🎭 مهرجان مسقط" : (currentLang === 'en' ? "🎭 Muscat Festival" : (currentLang === 'zh' ? "🎭 马斯喀特节" : "🎭 Φεστιβάλ Μουσκάτ")),
+            nizwa: currentLang === 'ar' ? "🌹 موسم الورد" : (currentLang === 'en' ? "🌹 Rose Season" : (currentLang === 'zh' ? "🌹 玫瑰季节" : "🌹 Εποχή των Ρόδων")),
+            salalah: currentLang === 'ar' ? "🌧️ خريف صلالة" : (currentLang === 'en' ? "🌧️ Khareef Salalah" : (currentLang === 'zh' ? "🌧️ 塞拉莱雨季" : "🌧️ Khareef Σαλάλα"))
+        };
+        
+        const specialDescs = {
+            muscat: currentLang === 'ar' ? "مهرجان ثقافي سنوي في يناير وفبراير." : (currentLang === 'en' ? "Annual cultural festival in Jan-Feb." : (currentLang === 'zh' ? "一月至二月的年度文化节。" : "Ετήσιο πολιτιστικό φεστιβάλ Ιαν-Φεβ.")),
+            nizwa: currentLang === 'ar' ? "من مارس إلى مايو في الجبل الأخضر." : (currentLang === 'en' ? "March to May in Jebel Akhdar." : (currentLang === 'zh' ? "三月至五月。" : "Μάρτιο έως Μάιο στο Jebel Akhdar.")),
+            salalah: currentLang === 'ar' ? "موسم الضباب والأمطار من يونيو إلى سبتمبر." : (currentLang === 'en' ? "Monsoon season from June to September." : (currentLang === 'zh' ? "六月至九月。" : "Εποχή μουσώνων Ιούνιο έως Σεπτέμβριο."))
+        };
+        
+        const specialDetails = {
+            muscat: [currentLang === 'ar' ? "ألعاب نارية" : (currentLang === 'en' ? "Fireworks" : (currentLang === 'zh' ? "烟花" : "Πυροτεχνήματα"))],
+            nizwa: [currentLang === 'ar' ? "قطف الورد" : (currentLang === 'en' ? "Rose picking" : (currentLang === 'zh' ? "采摘玫瑰" : "Μάζεμα ρόδων"))],
+            salalah: [currentLang === 'ar' ? "ضباب وأمطار" : (currentLang === 'en' ? "Fog and rain" : (currentLang === 'zh' ? "雾和雨" : "Ομίχλη και βροχή"))]
+        };
+        
+        const hotels = hotelsData[currentLang][cityKey] || [];
+        const restaurants = restaurantsData[currentLang][cityKey] || [];
+        const cafes = cafesData[currentLang][cityKey] || [];
+        
+        const container = document.getElementById('cityPagesContainer');
+        container.innerHTML = `
+            <div class="city-page active-page">
+                <button class="back-btn" onclick="backHome()">🔙 ${t.backHome}</button>
+                <div class="city-header"><h2>${cityNames[cityKey]}</h2></div>
+                
+                <div class="section special-section"><h3>✨ ${specialTitles[cityKey]} <span class="animated-icon">${cityKey === 'muscat' ? '🎭' : (cityKey === 'nizwa' ? '🌹' : '🌧️')}</span></h3><p>${specialDescs[cityKey]}</p>
+                    <div class="items-grid">${specialDetails[cityKey].map(d => `<div class="item-card"><h4>${d}</h4></div>`).join('')}</div>
+                </div>
+                
+                <div class="section"><h3>${t.sections.restaurants}</h3><div class="items-grid">${restaurants.map((r, idx) => `<div class="item-card" onclick="openDetailPage('restaurant', '${cityKey}', ${idx})"><h4>🍽️ ${r.name}</h4><p>${r.cuisine} | ${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${r.price}</p>${renderStars(r.rating)}</div>`).join('')}</div></div>
+                
+                <div class="section"><h3>${t.sections.cafes}</h3><div class="items-grid">${cafes.map((c, idx) => `<div class="item-card" onclick="openDetailPage('cafe', '${cityKey}', ${idx})"><h4>☕ ${c.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${c.price}</p>${renderStars(c.rating)}</div>`).join('')}</div></div>
+                
+                <div class="section"><h3>${t.sections.hotels}</h3><div class="items-grid">${hotels.map((h, idx) => `<div class="item-card" onclick="openDetailPage('hotel', '${cityKey}', ${idx})"><h4>🏨 ${h.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${h.price}</p>${renderStars(h.rating)}</div>`).join('')}</div></div>
+            </div>
+        `;
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('detailPageContainer').innerHTML = '';
+        container.style.display = 'block';
+    }
+
+    function backHome() { 
+        currentCityId = null;
+        renderHome(); 
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if (lang === 'ar') document.querySelector('.lang-btn:first-child').classList.add('active');
+        else if (lang === 'en') document.querySelector('.lang-btn:nth-child(2)').classList.add('active');
+        else if (lang === 'zh') document.querySelector('.lang-btn:nth-child(3)').classList.add('active');
+        else if (lang === 'el') document.querySelector('.lang-btn:last-child').classList.add('active');
+        
+        const chatBody = document.getElementById('aiChatBody');
+        if (chatBody) {
+            const welcomeMsg = document.getElementById('welcomeChatMsg');
+            if (welcomeMsg) {
+                welcomeMsg.innerHTML = lang === 'ar' ? '👋 مرحباً! اختر سؤالاً:' : (lang === 'en' ? '👋 Hello! Choose a question:' : (lang === 'zh' ? '👋 您好！请选择一个问题：' : '👋 Γεια σας! Επιλέξτε μια ερώτηση:'));
+            }
+            renderQuestions();
+        }
+        
+        if (currentCityId) openCity(currentCityId);
+        else renderHome();
+    }
+
+    renderHome();
+    renderQuestions();
+    document.querySelector('.lang-btn:first-child').classList.add('active');
+</script>
+</body>
+</html>
