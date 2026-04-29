@@ -681,45 +681,4 @@
                 
                 <div class="section"><h3>${t.sections.cafes}</h3><div class="items-grid">${cafes.map((c, idx) => `<div class="item-card" onclick="openDetailPage('cafe', '${cityKey}', ${idx})"><h4>☕ ${c.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${c.price}</p>${renderStars(c.rating)}</div>`).join('')}</div></div>
                 
-                <div class="section"><h3>${t.sections.hotels}</h3><div class="items-grid">${hotels.map((h, idx) => `<div class="item-card" onclick="openDetailPage('hotel', '${cityKey}', ${idx})"><h4>🏨 ${h.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${h.price}</p>${renderStars(h.rating)}</div>`).join('')}</div></div>
-            </div>
-        `;
-        document.getElementById('mainPage').style.display = 'none';
-        document.getElementById('detailPageContainer').innerHTML = '';
-        container.style.display = 'block';
-    }
-
-    function backHome() { 
-        currentCityId = null;
-        renderHome(); 
-    }
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        if (lang === 'ar') document.querySelector('.lang-btn:first-child').classList.add('active');
-        else if (lang === 'en') document.querySelector('.lang-btn:nth-child(2)').classList.add('active');
-        else if (lang === 'zh') document.querySelector('.lang-btn:nth-child(3)').classList.add('active');
-        else if (lang === 'el') document.querySelector('.lang-btn:last-child').classList.add('active');
-        
-        const chatBody = document.getElementById('aiChatBody');
-        if (chatBody) {
-            const welcomeMsg = document.getElementById('welcomeChatMsg');
-            if (welcomeMsg) {
-                welcomeMsg.innerHTML = lang === 'ar' ? '👋 مرحباً! اختر سؤالاً:' : (lang === 'en' ? '👋 Hello! Choose a question:' : (lang === 'zh' ? '👋 您好！请选择一个问题：' : '👋 Γεια σας! Επιλέξτε μια ερώτηση:'));
-            }
-            renderQuestions();
-        }
-        
-        if (currentCityId) openCity(currentCityId);
-        else renderHome();
-    }
-
-    renderHome();
-    renderQuestions();
-    document.querySelector('.lang-btn:first-child').classList.add('active');
-</script>
-</body>
-</html>
+                <div class="section"><h3>${t.sections.hotels}</h3><div class="items-grid">${hotels.map((h, idx) => `<div class>
