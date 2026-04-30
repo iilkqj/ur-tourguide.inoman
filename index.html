@@ -15,7 +15,6 @@
         body[dir="ltr"] { direction: ltr; text-align: left; }
         body[dir="rtl"] { direction: rtl; text-align: right; }
 
-        /* لغة شريط اللغات */
         .language-bar {
             background: linear-gradient(135deg, #C1272D, #1A5C3E);
             padding: 0.8rem 2rem;
@@ -37,36 +36,25 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
-            font-size: 0.9rem;
         }
-        .lang-btn:hover, .lang-btn.active {
-            background-color: #D4AF37;
-            color: #1A3C5E;
-            transform: scale(1.05);
-        }
+        .lang-btn:hover, .lang-btn.active { background-color: #D4AF37; color: #1A3C5E; transform: scale(1.05); }
 
-        /* الهيدر */
         .hero {
             background: linear-gradient(135deg, #1A3C5E, #2C5A7A);
-            padding: 2.5rem 1rem;
+            padding: 2rem 1rem;
             text-align: center;
             color: white;
             border-bottom: 4px solid #D4AF37;
         }
-        .hero h1 {
-            font-size: 2.5rem;
-            font-family: 'Amiri', serif;
-            letter-spacing: 2px;
-        }
-        .hero p { font-size: 1rem; max-width: 800px; margin: 0.5rem auto; }
+        .hero h1 { font-size: 2.2rem; font-family: 'Amiri', serif; }
+        .hero p { font-size: 0.9rem; max-width: 800px; margin: 0.5rem auto; }
         .hero-welcome {
             background: rgba(212, 175, 55, 0.25);
             display: inline-block;
-            padding: 0.3rem 1.2rem;
+            padding: 0.3rem 1rem;
             border-radius: 50px;
-            margin-top: 0.8rem;
-            font-size: 0.85rem;
-            font-style: italic;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
         }
         .ai-badge {
             display: inline-block;
@@ -77,17 +65,16 @@
             margin-top: 0.5rem;
         }
 
-        /* أقسام Why Oman و Seasons */
-        .why-oman, .seasons {
+        .why-oman, .seasons, .greek-food {
             background: white;
-            margin: 1.5rem auto;
+            margin: 1rem auto;
             padding: 1.5rem;
             border-radius: 20px;
             max-width: 1200px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
-        .why-oman h2, .seasons h2 {
+        .why-oman h2, .seasons h2, .greek-food h2 {
             text-align: center;
             font-size: 1.5rem;
             color: #C1272D;
@@ -114,27 +101,9 @@
         .why-card h3, .season-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
         .why-card p, .season-card p { font-size: 0.75rem; color: #1E88E5; }
 
-        /* Greek Food Section */
-        .greek-food {
-            background: white;
-            margin: 1.5rem auto;
-            padding: 1.5rem;
-            border-radius: 20px;
-            max-width: 1200px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .greek-food h2 {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #C1272D;
-            margin-bottom: 1rem;
-            border-bottom: 3px solid #D4AF37;
-            display: inline-block;
-        }
         .food-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
@@ -143,15 +112,15 @@
             border-radius: 16px;
             padding: 1rem;
             text-align: center;
+            cursor: pointer;
             transition: all 0.2s;
             border: 1px solid #E3F2FD;
         }
-        .food-card:hover { transform: translateY(-3px); border-color: #D4AF37; }
+        .food-card:hover { transform: translateY(-3px); border-color: #D4AF37; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         .food-emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
         .food-card h3 { font-size: 1rem; margin-bottom: 0.3rem; color: #1A3C5E; }
-        .food-card p { font-size: 0.75rem; color: #1E88E5; line-height: 1.4; }
+        .food-card p { font-size: 0.75rem; color: #1E88E5; }
 
-        /* مدن (بطاقات) */
         .cities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -180,9 +149,10 @@
         }
         .card-content { padding: 1rem; text-align: center; }
         .card-content h3 { font-size: 1.3rem; margin-bottom: 0.3rem; color: #C1272D; }
-        .card-content p { font-size: 0.8rem; color: #1E88E5; margin-bottom: 0.3rem; }
+        .card-content p { font-size: 0.8rem; color: #1E88E5; }
+        .city-tags { display: flex; gap: 0.3rem; justify-content: center; flex-wrap: wrap; }
+        .tag { background: #E3F2FD; padding: 0.2rem 0.5rem; border-radius: 15px; font-size: 0.65rem; color: #0D47A1; }
 
-        /* الفوتر مع الإيميل القابل للنسخ */
         .footer {
             background: linear-gradient(135deg, #1A3C5E, #2C5A7A);
             color: white;
@@ -205,7 +175,6 @@
             border-radius: 30px;
             font-size: 0.8rem;
             font-family: monospace;
-            letter-spacing: 0.5px;
         }
         .copy-btn {
             background: #D4AF37;
@@ -216,16 +185,38 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 0.7rem;
-            transition: all 0.2s;
         }
-        .copy-btn:hover { background: white; transform: scale(1.02); }
-        .copy-feedback {
-            font-size: 0.7rem;
-            color: #D4AF37;
-            margin-right: 0.5rem;
+        .copy-btn:hover { background: white; }
+
+        .detail-page {
+            max-width: 800px;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            display: none;
+            border: 1px solid #D4AF37;
+        }
+        .detail-page.active-detail { display: block; }
+        .detail-header { text-align: center; margin-bottom: 1rem; }
+        .detail-header h2 { font-size: 1.5rem; color: #C1272D; border-bottom: 3px solid #D4AF37; display: inline-block; }
+        .detail-info { margin-bottom: 1rem; }
+        .detail-info h3 { font-size: 1.1rem; color: #1A3C5E; margin-bottom: 0.3rem; }
+        .detail-info p { font-size: 0.9rem; color: #1E88E5; }
+        .detail-price { font-size: 1.2rem; color: #D4AF37; font-weight: bold; margin: 0.8rem 0; }
+        .detail-location { background: #E3F2FD; padding: 0.8rem; border-radius: 15px; margin: 0.8rem 0; }
+        .back-btn {
+            background: #D4AF37;
+            color: #1A3C5E;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem auto;
+            display: inline-block;
         }
 
-        /* المساعد الذكي */
         .ai-floating {
             position: fixed;
             bottom: 20px;
@@ -238,7 +229,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             border: 2px solid #D4AF37;
             font-size: 1.5rem;
@@ -253,11 +243,9 @@
             max-width: 90vw;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             display: none;
             flex-direction: column;
             z-index: 1000;
-            overflow: hidden;
             border: 1px solid #D4AF37;
         }
         .ai-chat-header {
@@ -266,7 +254,6 @@
             padding: 0.5rem;
             font-weight: bold;
             text-align: center;
-            font-size: 0.9rem;
         }
         .ai-chat-body {
             padding: 0.8rem;
@@ -296,10 +283,8 @@
             font-size: 0.65rem;
             cursor: pointer;
         }
-
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.8rem; }
-            .cities-grid { padding: 0.5rem; gap: 1rem; }
             .ai-chat { width: 300px; left: 10px; bottom: 75px; }
         }
     </style>
@@ -331,24 +316,15 @@
         </div>
     </div>
 
-    <!-- قسم الأكلات اليونانية في عمان فقط -->
     <div class="greek-food">
         <div style="text-align: center;"><h2>🇬🇷 أكلات يونانية في عُمان 🍽️</h2></div>
-        <div class="food-grid">
-            <div class="food-card"><div class="food-emoji">🥙</div><h3>سوفلاكي (Souvlaki)</h3><p>لحم مشوي على الأسياخ، يقدم مع الخبز والصلصات - متوفر في مطاعم مسقط</p></div>
-            <div class="food-card"><div class="food-emoji">🥗</div><h3>سلطة يونانية (Horiatiki)</h3><p>خيار، طماطم، زيتون، جبنة فيتا، وزيت زيتون - طبق صيفي منعش</p></div>
-            <div class="food-card"><div class="food-emoji">🍆</div><h3>موсаكا (Moussaka)</h3><p>طبق باذنجان باللحم المفروم وصلصة البشاميل - من أشهر الأطباق اليونانية</p></div>
-            <div class="food-card"><div class="food-emoji">🫓</div><h3>جيروس (Gyros)</h3><p>لحم مشوي عمودي، يقدم في خبز البيتا مع صلصة تزاتزيكي - موجود في مسقط</p></div>
-            <div class="food-card"><div class="food-emoji">🍯</div><h3>باكلفا (Baklava)</h3><p>حلوى شرقية شهيرة، تجمع بين المطبخين العماني واليوناني</p></div>
-            <div class="food-card"><div class="food-emoji">🍋</div><h3>أفغوليمونو (Avgolemono)</h3><p>شوربة الدجاج بالليمون والبيض - طبق يوناني تقليدي</p></div>
-        </div>
-        <div style="text-align: center; margin-top: 0.8rem;"><p style="font-size: 0.7rem; color: #C1272D;">📍 تتوفر هذه الأطباق في مطاعم يونانية مختارة في مسقط</p></div>
+        <div class="food-grid" id="greekFoodGrid"></div>
+        <div style="text-align: center; margin-top: 0.5rem;"><p style="font-size: 0.7rem; color: #C1272D;">📍 اضغط على أي طبق لمعرفة موقعه وتفاصيله</p></div>
     </div>
 
     <div class="cities-grid" id="citiesGrid"></div>
 </div>
 
-<div id="cityPagesContainer"></div>
 <div id="detailPageContainer"></div>
 
 <div class="ai-floating" onclick="toggleAIChat()">
@@ -365,73 +341,90 @@
 
 <div class="footer">
     <div class="contact-container">
-        <span class="contact-email" id="emailAddress">iilkqj@gmail.com</span>
+        <span class="contact-email">iilkqj@gmail.com</span>
         <button class="copy-btn" onclick="copyEmail()">📋 نسخ الإيميل</button>
-        <span id="copyFeedback" class="copy-feedback"></span>
+        <span id="copyFeedback" style="font-size:0.7rem; color:#D4AF37;"></span>
     </div>
     <p id="footerText">© 2026 سمر | Summer - معرض الثقافة العمانية اليونانية</p>
 </div>
 
 <script>
-    // ==================== الترجمة (4 لغات) ====================
-    const translations = {
-        ar: {
-            heroTitle: "🌊 سمر | Summer", heroDesc: "معرض الثقافة العمانية اليونانية | دمج الفن والتراث بين عُمان واليونان", welcome: "✨ مرحباً بك في المعرض — اكتشف جسور الثقافة بين عُمان واليونان ✨",
-            whyTitle: "🇴🇲🇬🇷 جسور الثقافة بين عُمان واليونان", why1Title: "تراث مشترك", why1Desc: "علاقات تاريخية وثقافية تمتد لقرون", why2Title: "فنون متنوعة", why2Desc: "مزج بين الفن العماني واليوناني",
-            why3Title: "آثار وتاريخ", why3Desc: "قصص وروايات من حضارتي عُمان واليونان", why4Title: "مطبخ متنوع", why4Desc: "أكلات يونانية في عُمان",
-            backHome: "🏠 العودة للرئيسية", footer: "© 2026 سمر | Summer - معرض الثقافة العمانية اليونانية"
-        },
-        en: {
-            heroTitle: "🌊 Summer | Cultural Exhibition", heroDesc: "Omani-Greek Cultural Exhibition | Art & Heritage between Oman and Greece", welcome: "✨ Welcome to the exhibition — Discover cultural bridges between Oman and Greece ✨",
-            whyTitle: "🇴🇲🇬🇷 Cultural Bridges", why1Title: "Shared Heritage", why1Desc: "Historical and cultural ties spanning centuries", why2Title: "Diverse Arts", why2Desc: "Blending Omani and Greek art",
-            why3Title: "History &古迹", why3Desc: "Stories from Omani and Greek civilizations", why4Title: "Diverse Cuisine", why4Desc: "Greek food in Oman",
-            backHome: "🏠 Back to Home", footer: "© 2026 Summer | Omani-Greek Cultural Exhibition"
-        },
-        zh: {
-            heroTitle: "🌊 Summer | 文化展览", heroDesc: "阿曼-希腊文化展览 | 艺术与遗产", welcome: "✨ 欢迎参观展览 — 探索阿曼与希腊之间的文化桥梁 ✨",
-            whyTitle: "🇴🇲🇬🇷 文化桥梁", why1Title: "共同遗产", why1Desc: "跨越几个世纪的历史文化联系", why2Title: "多元艺术", why2Desc: "融合阿曼和希腊艺术",
-            why3Title: "历史与古迹", why3Desc: "阿曼和希腊文明的故事", why4Title: "多元美食", why4Desc: "希腊美食在阿曼",
-            backHome: "🏠 返回首页", footer: "© 2026 Summer | 阿曼-希腊文化展览"
-        },
-        el: {
-            heroTitle: "🌊 Summer | Πολιτιστική Έκθεση", heroDesc: "Ομανο-Ελληνική Πολιτιστική Έκθεση | Τέχνη & Κληρονομιά", welcome: "✨ Καλώς ήρθατε στην έκθεση — Ανακαλύψτε τις πολιτιστικές γέφυρες ✨",
-            whyTitle: "🇴🇲🇬🇷 Πολιτιστικές Γέφυρες", why1Title: "Κοινή Κληρονομιά", why1Desc: "Ιστορικοί δεσμοί αιώνων", why2Title: "Ποικιλόμορφη Τέχνη", why2Desc: "Συγχώνευση Ομανικής και Ελληνικής τέχνης",
-            why3Title: "Ιστορία", why3Desc: "Ιστορίες από Ομανικούς και Ελληνικούς πολιτισμούς", why4Title: "Ποικιλόμορφη Κουζίνα", why4Desc: "Ελληνικό φαγητό στο Ομάν",
-            backHome: "🏠 Επιστροφή", footer: "© 2026 Summer | Ομανο-Ελληνική Πολιτιστική Έκθεση"
-        }
-    };
-
-    // أسئلة سريعة للمساعد
-    const qaData = {
+    // ==================== بيانات الأكلات اليونانية (مترجمة كلياً) ====================
+    const greekFoodsData = {
         ar: [
-            { q: "ما هي الأكلات اليونانية المتوفرة في عمان؟", a: "🥙 السوفلاكي، السلطة اليونانية، الموساكا، الجيروس، الباكلفا، وشوربة الأفغوليمونو. تتوفر في مطاعم يونانية في مسقط." },
-            { q: "أين أجد مطاعم يونانية في مسقط؟", a: "📍 توجد مطاعم يونانية في مناطق القرم والموالح والخوير في مسقط." }
+            { name: "سوفلاكي (Souvlaki)", desc: "لحم مشوي على الأسياخ، يقدم مع الخبز والصلصات.", location: "مطعم يوناني، منطقة القرم، مسقط", directions: "يقع في شارع القرم الرئيسي، بجانب فندق كراون بلازا.", price: "5-7 ريال", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "سلطة يونانية (Horiatiki)", desc: "خيار، طماطم، زيتون، جبنة فيتا، وزيت زيتون.", location: "مقاهي ومطاعم مسقط", directions: "متوفرة في معظم المطاعم اليونانية في مسقط.", price: "3-5 ريال", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "موساكا (Moussaka)", desc: "طبق باذنجان باللحم المفروم وصلصة البشاميل.", location: "مطعم Parthenon، الموالح، مسقط", directions: "منطقة الموالح الجنوبية، بجانب مجمع الموالح التجاري.", price: "7-10 ريال", map: "https://maps.google.com/?q=Parthenon+Restaurant+Muscat" },
+            { name: "جيروس (Gyros)", desc: "لحم مشوي عمودي، يقدم في خبز البيتا مع صلصة تزاتزيكي.", location: "مطعم Greek Corner، الخوير، مسقط", directions: "شارع الخوير، مقابل مجمع الخوير بلازا.", price: "4-6 ريال", map: "https://maps.google.com/?q=Greek+Corner+Al+Khuwair" },
+            { name: "باكلفا (Baklava)", desc: "حلوى شرقية شهيرة، تجمع بين المطبخين العماني واليوناني.", location: "متوفرة في المخابز والحلويات في مسقط", directions: "توجد في多数 محلات الحلويات.", price: "2-4 ريال", map: "https://maps.google.com/?q=Sweet+Shop+Muscat" },
+            { name: "أفغوليمونو (Avgolemono)", desc: "شوربة الدجاج بالليمون والبيض.", location: "مطعم Greek Taverna، القرم، مسقط", directions: "شاطئ القرم، بجانب فندق كراون بلازا.", price: "4-6 ريال", map: "https://maps.google.com/?q=Greek+Taverna+Qurum" }
         ],
         en: [
-            { q: "What Greek food is available in Oman?", a: "🥙 Souvlaki, Greek salad, Moussaka, Gyros, Baklava, and Avgolemono soup. Available at Greek restaurants in Muscat." },
-            { q: "Where to find Greek restaurants in Muscat?", a: "📍 Greek restaurants are located in Qurum, Al Mouj, and Al Khuwair areas in Muscat." }
+            { name: "Souvlaki", desc: "Grilled meat on skewers, served with bread and sauces.", location: "Greek restaurant, Qurum, Muscat", directions: "On main Qurum street, near Crowne Plaza.", price: "5-7 OMR", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "Horiatiki (Greek Salad)", desc: "Cucumber, tomato, olives, feta cheese, olive oil.", location: "Cafes and restaurants in Muscat", directions: "Available at most Greek restaurants in Muscat.", price: "3-5 OMR", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "Moussaka", desc: "Eggplant casserole with minced meat and béchamel sauce.", location: "Parthenon Restaurant, Al Mouj, Muscat", directions: "South Al Mouj, near Al Mouj Complex.", price: "7-10 OMR", map: "https://maps.google.com/?q=Parthenon+Restaurant+Muscat" },
+            { name: "Gyros", desc: "Vertical rotisserie meat in pita bread with tzatziki sauce.", location: "Greek Corner, Al Khuwair, Muscat", directions: "Al Khuwair Street, opposite Al Khuwair Plaza.", price: "4-6 OMR", map: "https://maps.google.com/?q=Greek+Corner+Al+Khuwair" },
+            { name: "Baklava", desc: "Famous sweet pastry blending Omani and Greek cuisines.", location: "Bakeries and sweet shops in Muscat", directions: "Found in most sweet shops.", price: "2-4 OMR", map: "https://maps.google.com/?q=Sweet+Shop+Muscat" },
+            { name: "Avgolemono", desc: "Chicken, lemon, and egg soup.", location: "Greek Taverna, Qurum, Muscat", directions: "Qurum Beach, near Crowne Plaza.", price: "4-6 OMR", map: "https://maps.google.com/?q=Greek+Taverna+Qurum" }
         ],
         zh: [
-            { q: "阿曼有哪些希腊美食？", a: "🥙 苏弗拉基、希腊沙拉、慕萨卡、吉罗斯、巴克拉瓦和阿夫戈莱莫诺汤。在马斯喀特的希腊餐厅有售。" },
-            { q: "马斯喀特哪里可以找到希腊餐厅？", a: "📍 希腊餐厅位于马斯喀特的库鲁姆、阿尔穆日和阿尔库维尔地区。" }
+            { name: "苏弗拉基 (Souvlaki)", desc: "烤串肉，配面包和酱汁。", location: "马斯喀特库鲁姆的希腊餐厅", directions: "库鲁姆主街，皇冠假日酒店附近。", price: "5-7 阿曼里亚尔", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "希腊沙拉 (Horiatiki)", desc: "黄瓜、番茄、橄榄、羊乳酪、橄榄油。", location: "马斯喀特的咖啡馆和餐厅", directions: "大多数希腊餐厅都有。", price: "3-5 阿曼里亚尔", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "慕萨卡 (Moussaka)", desc: "茄子肉末砂锅配白酱。", location: "Parthenon餐厅，阿尔穆日，马斯喀特", directions: "阿尔穆日南部，阿尔穆日综合大楼附近。", price: "7-10 阿曼里亚尔", map: "https://maps.google.com/?q=Parthenon+Restaurant+Muscat" },
+            { name: "吉罗斯 (Gyros)", desc: "垂直烤肉，放在皮塔饼里，配酸奶黄瓜酱。", location: "Greek Corner，阿尔库维尔，马斯喀特", directions: "阿尔库维尔街，阿尔库维尔广场对面。", price: "4-6 阿曼里亚尔", map: "https://maps.google.com/?q=Greek+Corner+Al+Khuwair" },
+            { name: "巴克拉瓦 (Baklava)", desc: "融合阿曼和希腊美食的著名甜点。", location: "马斯喀特的面包店和甜品店", directions: "大多数甜品店都有。", price: "2-4 阿曼里亚尔", map: "https://maps.google.com/?q=Sweet+Shop+Muscat" },
+            { name: "阿夫戈莱莫诺 (Avgolemono)", desc: "鸡肉柠檬蛋汤。", location: "Greek Taverna，库鲁姆，马斯喀特", directions: "库鲁姆海滩，皇冠假日酒店附近。", price: "4-6 阿曼里亚尔", map: "https://maps.google.com/?q=Greek+Taverna+Qurum" }
         ],
         el: [
-            { q: "Ποια ελληνικά φαγητά είναι διαθέσιμα στο Ομάν;", a: "🥙 Σουβλάκι, ελληνική σαλάτα, Μουσακάς, Γύρος, Μπακλαβάς, και σούπα Αυγολέμονο. Διαθέσιμα σε ελληνικά εστιατόρια στο Μουσκάτ." },
-            { q: "Πού να βρω ελληνικά εστιατόρια στο Μουσκάτ;", a: "📍 Ελληνικά εστιατόρια βρίσκονται στις περιοχές Qurum, Al Mouj και Al Khuwair στο Μουσκάτ." }
+            { name: "Σουβλάκι (Souvlaki)", desc: "Ψητό κρέας σε σούβλες, σερβίρεται με ψωμί και σάλτσες.", location: "Ελληνικό εστιατόριο, Qurum, Μουσκάτ", directions: "Στην κεντρική οδό Qurum, κοντά στο Crowne Plaza.", price: "5-7 OMR", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "Χωριάτικη (Horiatiki)", desc: "Αγγούρι, ντομάτα, ελιές, φέτα, ελαιόλαδο.", location: "Καφετέριες και εστιατόρια στο Μουσκάτ", directions: "Διατίθεται στα περισσότερα ελληνικά εστιατόρια.", price: "3-5 OMR", map: "https://maps.google.com/?q=Greek+Restaurant+Muscat" },
+            { name: "Μουσακάς (Moussaka)", desc: "Μελιτζάνες με κιμά και σάλτσα μπεσαμέλ.", location: "Parthenon Restaurant, Al Mouj, Μουσκάτ", directions: "Νότιο Al Mouj, κοντά στο Al Mouj Complex.", price: "7-10 OMR", map: "https://maps.google.com/?q=Parthenon+Restaurant+Muscat" },
+            { name: "Γύρος (Gyros)", desc: "Κατακόρυφο ψητό κρέας σε πίτα με σάλτσα τζατζίκι.", location: "Greek Corner, Al Khuwair, Μουσκάτ", directions: "Οδός Al Khuwair, απέναντι από το Al Khuwair Plaza.", price: "4-6 OMR", map: "https://maps.google.com/?q=Greek+Corner+Al+Khuwair" },
+            { name: "Μπακλαβάς (Baklava)", desc: "Διάσημο γλυκό που συνδυάζει την ομανική και ελληνική κουζίνα.", location: "Αρτοποιεία και ζαχαροπλαστεία στο Μουσκάτ", directions: "Διατίθεται στα περισσότερα ζαχαροπλαστεία.", price: "2-4 OMR", map: "https://maps.google.com/?q=Sweet+Shop+Muscat" },
+            { name: "Αυγολέμονο (Avgolemono)", desc: "Σούπα με κοτόπουλο, λεμόνι και αυγό.", location: "Greek Taverna, Qurum, Μουσκάτ", directions: "Παραλία Qurum, κοντά στο Crowne Plaza.", price: "4-6 OMR", map: "https://maps.google.com/?q=Greek+Taverna+Qurum" }
         ]
+    };
+
+    const translations = {
+        ar: { heroTitle: "🌊 سمر | Summer", heroDesc: "معرض الثقافة العمانية اليونانية | دمج الفن والتراث بين عُمان واليونان", welcome: "✨ مرحباً بك في المعرض — اكتشف جسور الثقافة بين عُمان واليونان ✨",
+            whyTitle: "🇴🇲🇬🇷 جسور الثقافة بين عُمان واليونان", why1Title: "تراث مشترك", why1Desc: "علاقات تاريخية وثقافية تمتد لقرون", why2Title: "فنون متنوعة", why2Desc: "مزج بين الفن العماني واليوناني",
+            why3Title: "آثار وتاريخ", why3Desc: "قصص وروايات من حضارتي عُمان واليونان", why4Title: "مطبخ متنوع", why4Desc: "أكلات يونانية في عُمان",
+            backHome: "🏠 العودة للرئيسية", footer: "© 2026 سمر | Summer - معرض الثقافة العمانية اليونانية" },
+        en: { heroTitle: "🌊 Summer | Cultural Exhibition", heroDesc: "Omani-Greek Cultural Exhibition | Art & Heritage", welcome: "✨ Welcome — Discover cultural bridges between Oman and Greece ✨",
+            whyTitle: "🇴🇲🇬🇷 Cultural Bridges", why1Title: "Shared Heritage", why1Desc: "Historical ties spanning centuries", why2Title: "Diverse Arts", why2Desc: "Blending Omani and Greek art",
+            why3Title: "History &古迹", why3Desc: "Stories from both civilizations", why4Title: "Diverse Cuisine", why4Desc: "Greek food in Oman",
+            backHome: "🏠 Back to Home", footer: "© 2026 Summer | Omani-Greek Cultural Exhibition" },
+        zh: { heroTitle: "🌊 Summer | 文化展览", heroDesc: "阿曼-希腊文化展览 | 艺术与遗产", welcome: "✨ 欢迎 — 探索阿曼与希腊之间的文化桥梁 ✨",
+            whyTitle: "🇴🇲🇬🇷 文化桥梁", why1Title: "共同遗产", why1Desc: "跨越几个世纪的历史联系", why2Title: "多元艺术", why2Desc: "融合阿曼和希腊艺术",
+            why3Title: "历史与古迹", why3Desc: "两种文明的故事", why4Title: "多元美食", why4Desc: "希腊美食在阿曼",
+            backHome: "🏠 返回首页", footer: "© 2026 Summer | 阿曼-希腊文化展览" },
+        el: { heroTitle: "🌊 Summer | Πολιτιστική Έκθεση", heroDesc: "Ομανο-Ελληνική Πολιτιστική Έκθεση", welcome: "✨ Καλώς ήρθατε — Ανακαλύψτε τις πολιτιστικές γέφυρες ✨",
+            whyTitle: "🇴🇲🇬🇷 Πολιτιστικές Γέφυρες", why1Title: "Κοινή Κληρονομιά", why1Desc: "Ιστορικοί δεσμοί αιώνων", why2Title: "Ποικιλόμορφη Τέχνη", why2Desc: "Συγχώνευση Ομανικής και Ελληνικής τέχνης",
+            why3Title: "Ιστορία", why3Desc: "Ιστορίες και από τους δύο πολιτισμούς", why4Title: "Ποικιλόμορφη Κουζίνα", why4Desc: "Ελληνικό φαγητό στο Ομάν",
+            backHome: "🏠 Επιστροφή", footer: "© 2026 Summer | Ομανο-Ελληνική Πολιτιστική Έκθεση" }
     };
 
     let currentLang = 'ar';
 
     function renderStars(r) { let s=''; for(let i=0;i<Math.floor(r);i++) s+='★'; for(let i=0;i<5-Math.floor(r);i++) s+='☆'; return `<div>${s} (${r})</div>`; }
+    function renderGreekFood() { const foods = greekFoodsData[currentLang]; const container = document.getElementById('greekFoodGrid'); if(!container) return; container.innerHTML = foods.map((food, idx) => `<div class="food-card" onclick="openFoodDetail(${idx})"><div class="food-emoji">${['🥙','🥗','🍆','🫓','🍯','🍋'][idx]}</div><h3>${food.name}</h3><p>${food.desc.substring(0, 50)}...</p></div>`).join(''); }
+    function openFoodDetail(index) { const food = greekFoodsData[currentLang][index]; if(!food) return; const t = translations[currentLang]; const container = document.getElementById('detailPageContainer'); container.innerHTML = `<div class="detail-page active-detail"><button class="back-btn" onclick="closeDetailPage()">🔙 ${t.backHome}</button><div class="detail-header"><h2>${food.name}</h2></div><div class="detail-info"><h3>📝 ${currentLang=='ar'?'الوصف':(currentLang=='en'?'Description':(currentLang=='zh'?'描述':'Περιγραφή'))}</h3><p>${food.desc}</p></div><div class="detail-location"><h3>📍 ${currentLang=='ar'?'الموقع':(currentLang=='en'?'Location':(currentLang=='zh'?'位置':'Τοποθεσία'))}</h3><p>${food.location}</p></div><div class="detail-info"><h3>🚗 ${currentLang=='ar'?'الاتجاهات':(currentLang=='en'?'Directions':(currentLang=='zh'?'路线':'Οδηγίες'))}</h3><p>${food.directions}</p></div><div class="detail-price">💰 ${currentLang=='ar'?'السعر':(currentLang=='en'?'Price':(currentLang=='zh'?'价格':'Τιμή'))}: ${food.price}</div><a href="${food.map}" target="_blank" class="map-link" style="display:inline-block; background:#1E88E5; color:white; padding:0.3rem 0.8rem; border-radius:20px; text-decoration:none; font-size:0.8rem;">🗺️ ${currentLang=='ar'?'عرض على الخريطة':(currentLang=='en'?'View on Map':(currentLang=='zh'?'在地图上查看':'Προβολή στον Χάρτη'))}</a></div>`; document.getElementById('mainPage').style.display = 'none'; }
+    function closeDetailPage() { document.getElementById('detailPageContainer').innerHTML = ''; document.getElementById('mainPage').style.display = 'block'; }
+
+    let currentCityId = null;
+    function renderHome() { const t = translations[currentLang]; document.getElementById('heroTitle').innerHTML = t.heroTitle; document.getElementById('heroDesc').innerHTML = t.heroDesc; document.getElementById('welcomeMessage').innerHTML = t.welcome; document.getElementById('whyTitle').innerHTML = t.whyTitle; document.getElementById('why1Title').innerHTML = t.why1Title; document.getElementById('why1Desc').innerHTML = t.why1Desc; document.getElementById('why2Title').innerHTML = t.why2Title; document.getElementById('why2Desc').innerHTML = t.why2Desc; document.getElementById('why3Title').innerHTML = t.why3Title; document.getElementById('why3Desc').innerHTML = t.why3Desc; document.getElementById('why4Title').innerHTML = t.why4Title; document.getElementById('why4Desc').innerHTML = t.why4Desc; document.getElementById('footerText').innerHTML = t.footer; const cities = [{ id:"muscat", name: currentLang==='ar'?"مسقط":(currentLang==='en'?"Muscat":(currentLang==='zh'?"马斯喀特":"Μουσκάτ")), icon:"🎭", desc: currentLang==='ar'?"عاصمة عُمان":(currentLang==='en'?"Capital of Oman":(currentLang==='zh'?"阿曼首都":"Πρωτεύουσα του Ομάν")), tags:["الجامع الكبير","دار الأوبرا"] },{ id:"nizwa", name: currentLang==='ar'?"نزوى":(currentLang==='en'?"Nizwa":(currentLang==='zh'?"尼兹瓦":"Νίζουα")), icon:"🌹", desc: currentLang==='ar'?"مدينة التراث":(currentLang==='en'?"Heritage city":(currentLang==='zh'?"遗产城市":"Πόλη κληρονομιάς")), tags:["قلعة نزوى","سوق نزوى"] },{ id:"salalah", name: currentLang==='ar'?"صلالة":(currentLang==='en'?"Salalah":(currentLang==='zh'?"塞拉莱":"Σαλάλα")), icon:"🌧️", desc: currentLang==='ar'?"جنة الخريف":(currentLang==='en'?"Khareef paradise":(currentLang==='zh'?"季风天堂":"Παράδεισος Khareef")), tags:["خريف صلالة","وادي دربات"] }]; document.getElementById('citiesGrid').innerHTML = cities.map(city => `<div class="city-card" onclick="alert('سيتم إضافة تفاصيل المدينة في الإصدار القادم من المعرض')"><div class="card-icon">${city.icon}</div><div class="card-content"><h3>${city.name}</h3><p>${city.desc}</p><div class="city-tags">${city.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div></div>`).join(''); document.getElementById('mainPage').style.display = 'block'; document.getElementById('detailPageContainer').innerHTML = ''; }
+    const qaData = {
+        ar: [{ q: "ما هي الأكلات اليونانية المتوفرة في عمان؟", a: "🥙 السوفلاكي، السلطة اليونانية، الموساكا، الجيروس، الباكلفا، وشوربة الأفغوليمونو." }],
+        en: [{ q: "What Greek food is available in Oman?", a: "🥙 Souvlaki, Greek salad, Moussaka, Gyros, Baklava, and Avgolemono soup." }],
+        zh: [{ q: "阿曼有哪些希腊美食？", a: "🥙 苏弗拉基、希腊沙拉、慕萨卡、吉罗斯、巴克拉瓦和阿夫戈莱莫诺汤。" }],
+        el: [{ q: "Ποια ελληνικά φαγητά είναι διαθέσιμα στο Ομάν;", a: "🥙 Σουβλάκι, ελληνική σαλάτα, Μουσακάς, Γύρος, Μπακλαβάς, και σούπα Αυγολέμονο." }]
+    };
     function renderQuestions() { const grid = document.getElementById('questionsGrid'); const qa = qaData[currentLang]; if(!qa) return; grid.innerHTML = qa.map((item,idx)=>`<button class="q-btn" onclick="sendQuickQuestion(${idx})">❓ ${item.q.substring(0,35)}</button>`).join(''); }
     function sendQuickQuestion(idx) { const qa = qaData[currentLang]; if(!qa||!qa[idx]) return; const chatBody = document.getElementById('aiChatBody'); chatBody.innerHTML += `<div style="background:#D4AF37; padding:0.5rem; border-radius:15px; margin:0.5rem 0;">👤 ${qa[idx].q}</div>`; chatBody.innerHTML += `<div class="ai-chat-message">🤖 ${qa[idx].a}</div>`; chatBody.scrollTop = chatBody.scrollHeight; document.getElementById('aiChat').style.display='flex'; }
     function toggleAIChat() { const c = document.getElementById('aiChat'); c.style.display = c.style.display === 'flex' ? 'none' : 'flex'; if(c.style.display === 'flex') renderQuestions(); }
-    function copyEmail() { const email = 'iilkqj@gmail.com'; navigator.clipboard.writeText(email); const fb = document.getElementById('copyFeedback'); fb.innerText = '✅ تم النسخ!'; setTimeout(()=> fb.innerText='', 2000); }
-    function renderHome() { const t = translations[currentLang]; document.getElementById('heroTitle').innerHTML = t.heroTitle; document.getElementById('heroDesc').innerHTML = t.heroDesc; document.getElementById('welcomeMessage').innerHTML = t.welcome; document.getElementById('whyTitle').innerHTML = t.whyTitle; document.getElementById('why1Title').innerHTML = t.why1Title; document.getElementById('why1Desc').innerHTML = t.why1Desc; document.getElementById('why2Title').innerHTML = t.why2Title; document.getElementById('why2Desc').innerHTML = t.why2Desc; document.getElementById('why3Title').innerHTML = t.why3Title; document.getElementById('why3Desc').innerHTML = t.why3Desc; document.getElementById('why4Title').innerHTML = t.why4Title; document.getElementById('why4Desc').innerHTML = t.why4Desc; document.getElementById('footerText').innerHTML = t.footer; const cities = [{ id:"muscat", name: currentLang==='ar'?"مسقط":(currentLang==='en'?"Muscat":(currentLang==='zh'?"马斯喀特":"Μουσκάτ")), icon:"🎭", desc: currentLang==='ar'?"عاصمة عُمان":(currentLang==='en'?"Capital of Oman":(currentLang==='zh'?"阿曼首都":"Πρωτεύουσα του Ομάν")), tags:["الجامع الكبير","دار الأوبرا"] },{ id:"nizwa", name: currentLang==='ar'?"نزوى":(currentLang==='en'?"Nizwa":(currentLang==='zh'?"尼兹瓦":"Νίζουα")), icon:"🌹", desc: currentLang==='ar'?"مدينة التراث":(currentLang==='en'?"Heritage city":(currentLang==='zh'?"遗产城市":"Πόλη κληρονομιάς")), tags:["قلعة نزوى","سوق نزوى"] },{ id:"salalah", name: currentLang==='ar'?"صلالة":(currentLang==='en'?"Salalah":(currentLang==='zh'?"塞拉莱":"Σαλάλα")), icon:"🌧️", desc: currentLang==='ar'?"جنة الخريف":(currentLang==='en'?"Khareef paradise":(currentLang==='zh'?"季风天堂":"Παράδεισος Khareef")), tags:["خريف صلالة","وادي دربات"] }]; document.getElementById('citiesGrid').innerHTML = cities.map(city => `<div class="city-card" onclick="alert('سيتم إضافة تفاصيل المدينة قريباً في المعرض')"><div class="card-icon">${city.icon}</div><div class="card-content"><h3>${city.name}</h3><p>${city.desc}</p><div class="city-tags" style="display:flex; gap:0.3rem; justify-content:center;">${city.tags.map(t=>`<span class="tag" style="background:#E3F2FD; padding:0.2rem 0.5rem; border-radius:15px; font-size:0.65rem;">${t}</span>`).join('')}</div></div></div>`).join(''); document.getElementById('mainPage').style.display = 'block'; document.getElementById('cityPagesContainer').innerHTML = ''; }
-    function setLanguage(lang) { currentLang = lang; document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr'; document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); if (lang === 'ar') document.querySelector('.lang-btn:first-child').classList.add('active'); else if (lang === 'en') document.querySelector('.lang-btn:nth-child(2)').classList.add('active'); else if (lang === 'zh') document.querySelector('.lang-btn:nth-child(3)').classList.add('active'); else if (lang === 'el') document.querySelector('.lang-btn:last-child').classList.add('active'); const chatBody = document.getElementById('aiChatBody'); if(chatBody){ document.getElementById('welcomeChatMsg').innerHTML = lang === 'ar' ? '👋 مرحباً! اختر سؤالاً:' : (lang === 'en' ? '👋 Hello! Choose a question:' : (lang === 'zh' ? '👋 您好！请选择一个问题：' : '👋 Γεια σας! Επιλέξτε μια ερώτηση:')); renderQuestions(); } renderHome(); }
-
-    renderHome(); document.querySelector('.lang-btn:first-child').classList.add('active');
+    function copyEmail() { navigator.clipboard.writeText('iilkqj@gmail.com'); const fb = document.getElementById('copyFeedback'); fb.innerText = '✅ تم النسخ!'; setTimeout(()=> fb.innerText='', 2000); }
+    function setLanguage(lang) { currentLang = lang; document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr'; document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); if (lang === 'ar') document.querySelector('.lang-btn:first-child').classList.add('active'); else if (lang === 'en') document.querySelector('.lang-btn:nth-child(2)').classList.add('active'); else if (lang === 'zh') document.querySelector('.lang-btn:nth-child(3)').classList.add('active'); else if (lang === 'el') document.querySelector('.lang-btn:last-child').classList.add('active'); renderHome(); renderGreekFood(); const chatBody = document.getElementById('aiChatBody'); if(chatBody){ document.getElementById('welcomeChatMsg').innerHTML = lang === 'ar' ? '👋 مرحباً! اختر سؤالاً:' : (lang === 'en' ? '👋 Hello! Choose a question:' : (lang === 'zh' ? '👋 您好！请选择一个问题：' : '👋 Γεια σας! Επιλέξτε μια ερώτηση:')); renderQuestions(); } }
+    renderHome(); renderGreekFood(); document.querySelector('.lang-btn:first-child').classList.add('active');
 </script>
 </body>
 </html>
