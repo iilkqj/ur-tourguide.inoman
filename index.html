@@ -112,6 +112,94 @@
         .food-card h3, .city-card h3 { font-size: 1rem; margin-bottom: 0.3rem; color: #1A3C5E; }
         .food-card p, .city-card p { font-size: 0.75rem; color: #1E88E5; }
 
+        .city-page {
+            max-width: 1000px;
+            margin: 1rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 24px;
+            display: none;
+        }
+        .active-page { display: block; }
+        .city-header { text-align: center; margin-bottom: 1rem; }
+        .city-header h2 { font-size: 1.8rem; color: #C1272D; border-bottom: 3px solid #D4AF37; display: inline-block; }
+
+        .section {
+            background: #F8F9FA;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            border-right: 4px solid #D4AF37;
+            padding-right: 0.8rem;
+            color: #1A3C5E;
+        }
+        body[dir="ltr"] .section h3 {
+            border-right: none;
+            border-left: 4px solid #D4AF37;
+            padding-right: 0;
+            padding-left: 0.8rem;
+        }
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.8rem;
+        }
+        .item-card {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 16px;
+            border: 1px solid #E3F2FD;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .item-card:hover { transform: translateY(-3px); border-color: #D4AF37; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .item-card h4 { font-size: 1rem; margin-bottom: 0.3rem; color: #1A3C5E; }
+        .item-card p { font-size: 0.75rem; color: #1E88E5; }
+
+        .stars { color: #D4AF37; font-size: 0.8rem; margin: 0.3rem 0; }
+        .back-btn {
+            background: #D4AF37;
+            color: #1A3C5E;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem auto;
+            display: inline-block;
+        }
+        .detail-page {
+            max-width: 800px;
+            margin: 1rem auto;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            display: none;
+            border: 1px solid #D4AF37;
+        }
+        .detail-page.active-detail { display: block; }
+        .detail-header { text-align: center; margin-bottom: 1rem; }
+        .detail-header h2 { font-size: 1.5rem; color: #C1272D; border-bottom: 3px solid #D4AF37; display: inline-block; }
+        .detail-info { margin-bottom: 1rem; }
+        .detail-info h3 { font-size: 1rem; color: #1A3C5E; margin-bottom: 0.3rem; }
+        .detail-info p { font-size: 0.9rem; color: #1E88E5; }
+        .detail-price { font-size: 1.2rem; color: #D4AF37; font-weight: bold; margin: 0.8rem 0; }
+        .detail-location { background: #E3F2FD; padding: 0.8rem; border-radius: 15px; margin: 0.8rem 0; }
+        .map-link {
+            display: inline-block;
+            background: #1E88E5;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
         .footer {
             background: linear-gradient(135deg, #1A3C5E, #2C5A7A);
             color: white;
@@ -145,37 +233,9 @@
             font-weight: bold;
             font-size: 0.7rem;
         }
-        .detail-page {
-            max-width: 800px;
-            margin: 1rem auto;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 24px;
-            display: none;
-            border: 1px solid #D4AF37;
-        }
-        .detail-page.active-detail { display: block; }
-        .detail-header { text-align: center; margin-bottom: 1rem; }
-        .detail-header h2 { font-size: 1.5rem; color: #C1272D; border-bottom: 3px solid #D4AF37; display: inline-block; }
-        .detail-info { margin-bottom: 1rem; }
-        .detail-info h3 { font-size: 1rem; color: #1A3C5E; margin-bottom: 0.3rem; }
-        .detail-info p { font-size: 0.9rem; color: #1E88E5; }
-        .detail-price { font-size: 1.2rem; color: #D4AF37; font-weight: bold; margin: 0.8rem 0; }
-        .detail-location { background: #E3F2FD; padding: 0.8rem; border-radius: 15px; margin: 0.8rem 0; }
-        .back-btn {
-            background: #D4AF37;
-            color: #1A3C5E;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 0.5rem auto;
-            display: inline-block;
-        }
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.8rem; }
-            .food-grid, .cities-grid { grid-template-columns: 1fr; }
+            .items-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -213,6 +273,7 @@
     <div class="cities-grid" id="citiesGrid"></div>
 </div>
 
+<div id="cityPagesContainer"></div>
 <div id="detailPageContainer"></div>
 
 <div class="footer">
@@ -232,12 +293,33 @@
             whyTitle: "🇴🇲🇬🇷 جسور الثقافة", why1Title: "تراث مشترك", why1Desc: "علاقات تاريخية وثقافية", why2Title: "فنون متنوعة", why2Desc: "مزج بين الفن العماني واليوناني",
             why3Title: "آثار وتاريخ", why3Desc: "من حضارتي عُمان واليونان", why4Title: "مطبخ متنوع", why4Desc: "أكلات يونانية في عُمان", foodTitle: "🇬🇷 أكلات يونانية في عُمان 🍽️",
             footer: "© 2026 سمر | Summer - معرض الثقافة العمانية اليونانية",
-            cities: [
-                { name: "مسقط", icon: "🎭", desc: "عاصمة عُمان النابضة بالحياة", details: "العاصمة العمانية، مزيج من الأصالة والحداثة.", highlights: ["الجامع الكبير", "دار الأوبرا السلطانية", "سوق مطرح", "متحف عُمان", "كورنيش مطرح"], restaurants: ["P.F. Chang's", "China Mood", "Bait Al Luban", "Turkish House", "The Steakhouse"] },
-                { name: "نزوى", icon: "🌹", desc: "مدينة التراث العريق", details: "قلعة نزوى التاريخية وسوقها التقليدي.", highlights: ["قلعة نزوى", "سوق نزوى", "الجبل الأخضر", "فلج دارس", "حصن بيت الرديدة"], restaurants: ["Great Wall Hot Pot", "Peppercorns", "Nizwa Fort Restaurant", "Al Maidhan", "Jabal Cafe"] },
-                { name: "صلالة", icon: "🌧️", desc: "جنة الخريف الساحرة", details: "خريف صلالة الجميل وطبيعتها الخلابة.", highlights: ["خريف صلالة", "وادي دربات", "شاطئ المغسيل", "أرض اللبان", "سوق الحافة"], restaurants: ["China Palace", "Khareef Salalah", "Al Mina", "Salalah Beach Restaurant", "Mughsail Restaurant"] }
-            ],
-            foods: [
+            cities: {
+                muscat: { name: "مسقط", icon: "🎭", desc: "عاصمة عُمان النابضة بالحياة", details: "العاصمة العمانية، مزيج من الأصالة والحداثة." },
+                nizwa: { name: "نزوى", icon: "🌹", desc: "مدينة التراث العريق", details: "قلعة نزوى التاريخية وسوقها التقليدي." },
+                salalah: { name: "صلالة", icon: "🌧️", desc: "جنة الخريف الساحرة", details: "خريف صلالة الجميل وطبيعتها الخلابة." }
+            },
+            landmarks: {
+                muscat: ["الجامع الكبير: تحفة معمارية إسلامية", "دار الأوبرا السلطانية: صرح ثقافي عالمي", "سوق مطرح: سوق تقليدي عريق", "متحف عُمان: يروي تاريخ عُمان", "كورنيش مطرح: إطلالة رائعة"],
+                nizwa: ["قلعة نزوى: بناها الإمام سلطان بن سيف", "سوق نزوى: يشتهر بالخناجر والفضة", "الجبل الأخضر: جبال خضراء ورد", "فلج دارس: موقع تراث عالمي", "حصن بيت الرديدة: حصن تاريخي"],
+                salalah: ["وادي دربات: شلالات موسمية", "شاطئ المغسيل: فوهات مائية", "أرض اللبان: موقع يونسكو", "سوق الحافة: لبان وعسل", "جبل صمرحان: إطلالات"]
+            },
+            food: {
+                muscat: ["الشواء العُماني", "المجبوس", "الخبيصة", "البلاليط", "الحلوى العُمانية"],
+                nizwa: ["الحلوى العُمانية", "الشواء العُماني", "القبولي", "الهريس", "العرسية"],
+                salalah: ["المندي", "السمك المشوي", "العسل العماني", "حلوى الحليب", "القهوة الظفارية"]
+            },
+            restaurants: {
+                muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "8-15 ر.ع.", rating: 4.5, cuisine: "صيني", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "مطعم آسيوي صيني", directions: "الطابق الأول" },
+                         { name: "China Mood", location: "Al Bustan Palace", price: "15-25 ر.ع.", rating: 4.7, cuisine: "صيني فاخر", map: "https://maps.google.com/?q=China+Mood+Muscat", desc: "مطعم صيني فاخر", directions: "داخل فندق Al Bustan" }],
+                nizwa: [{ name: "Great Wall Hot Pot", location: "نزوى", price: "5-10 ر.ع.", rating: 4.9, cuisine: "صيني", map: "https://maps.google.com/?q=Great+Wall+Hot+Pot+Nizwa", desc: "هوت بوت صيني", directions: "وسط نزوى" }],
+                salalah: [{ name: "China Palace", location: "صلالة", price: "5-10 ر.ع.", rating: 4.2, cuisine: "صيني", map: "https://maps.google.com/?q=China+Palace+Salalah", desc: "مطعم صيني", directions: "وسط صلالة" }]
+            },
+            hotels: {
+                muscat: [{ name: "جراند حياة مسقط", location: "الخوير", price: "95-150 ر.ع.", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "فندق فاخر 5 نجوم", directions: "شارع السلطان قابوس" }],
+                nizwa: [{ name: "منتجع الجبل الأخضر", location: "الجبل الأخضر", price: "150-300 ر.ع.", rating: 4.9, map: "https://maps.google.com/?q=Alila+Jabal+Akhdar", desc: "منتجع فاخر", directions: "الجبل الأخضر" }],
+                salalah: [{ name: "الفانات - جي دبليو ماريوت", location: "صلالة", price: "120-250 ر.ع.", rating: 4.8, map: "https://maps.google.com/?q=Al+Fanar+JW+Marriott+Salalah", desc: "منتجع فاخر", directions: "على شاطئ صلالة" }]
+            },
+            greekFoods: [
                 { name: "سوفلاكي (Souvlaki)", emoji: "🥙", desc: "لحم مشوي على الأسياخ مع الخبز والصلصات.", location: "مطعم يوناني، منطقة القرم، مسقط", directions: "شارع القرم الرئيسي، بجانب فندق كراون بلازا.", price: "5-7 ريال" },
                 { name: "سلطة يونانية (Horiatiki)", emoji: "🥗", desc: "خيار، طماطم، زيتون، جبنة فيتا، وزيت زيتون.", location: "مقاهي ومطاعم مسقط", directions: "متوفرة في معظم المطاعم اليونانية.", price: "3-5 ريال" },
                 { name: "موساكا (Moussaka)", emoji: "🍆", desc: "طبق باذنجان باللحم المفروم وصلصة البشاميل.", location: "مطعم Parthenon، الموالح، مسقط", directions: "منطقة الموالح الجنوبية، بجانب مجمع الموالح.", price: "7-10 ريال" },
@@ -247,65 +329,180 @@
             ]
         },
         en: {
-            heroTitle: "🌊 Summer | Cultural Exhibition", heroDesc: "Omani-Greek Cultural Exhibition | Art & Heritage", welcome: "✨ Welcome — Discover cultural bridges ✨",
+            heroTitle: "🌊 Summer | Cultural Exhibition", heroDesc: "Omani-Greek Cultural Exhibition", welcome: "✨ Welcome — Discover cultural bridges ✨",
             whyTitle: "🇴🇲🇬🇷 Cultural Bridges", why1Title: "Shared Heritage", why1Desc: "Historical ties", why2Title: "Diverse Arts", why2Desc: "Blending art",
-            why3Title: "History &古迹", why3Desc: "From both civilizations", why4Title: "Diverse Cuisine", why4Desc: "Greek food in Oman", foodTitle: "🇬🇷 Greek Food in Oman 🍽️",
+            why3Title: "History", why3Desc: "From both civilizations", why4Title: "Diverse Cuisine", why4Desc: "Greek food in Oman", foodTitle: "🇬🇷 Greek Food in Oman 🍽️",
             footer: "© 2026 Summer | Omani-Greek Cultural Exhibition",
-            cities: [
-                { name: "Muscat", icon: "🎭", desc: "The vibrant capital of Oman", details: "The Omani capital, a blend of authenticity and modernity.", highlights: ["Grand Mosque", "Royal Opera House", "Mutrah Souq", "National Museum", "Mutrah Corniche"], restaurants: ["P.F. Chang's", "China Mood", "Bait Al Luban", "Turkish House", "The Steakhouse"] },
-                { name: "Nizwa", icon: "🌹", desc: "City of rich heritage", details: "Historic Nizwa Fort and its traditional souq.", highlights: ["Nizwa Fort", "Nizwa Souq", "Jebel Akhdar", "Falaj Daris", "Al Rudaidah Fort"], restaurants: ["Great Wall Hot Pot", "Peppercorns", "Nizwa Fort Restaurant", "Al Maidhan", "Jabal Cafe"] },
-                { name: "Salalah", icon: "🌧️", desc: "Magical Khareef paradise", details: "Beautiful Salalah Khareef and stunning nature.", highlights: ["Khareef Season", "Wadi Darbat", "Mughsail Beach", "Land of Frankincense", "Al Husn Souq"], restaurants: ["China Palace", "Khareef Salalah", "Al Mina", "Salalah Beach Restaurant", "Mughsail Restaurant"] }
-            ],
-            foods: [
-                { name: "Souvlaki", emoji: "🥙", desc: "Grilled meat on skewers with bread and sauces.", location: "Greek restaurant, Qurum, Muscat", directions: "Main Qurum street, near Crowne Plaza.", price: "5-7 OMR" },
-                { name: "Horiatiki (Greek Salad)", emoji: "🥗", desc: "Cucumber, tomato, olives, feta, olive oil.", location: "Cafes & restaurants in Muscat", directions: "Available at most Greek restaurants.", price: "3-5 OMR" },
-                { name: "Moussaka", emoji: "🍆", desc: "Eggplant casserole with minced meat and béchamel.", location: "Parthenon Restaurant, Al Mouj, Muscat", directions: "South Al Mouj, near Al Mouj Complex.", price: "7-10 OMR" },
-                { name: "Gyros", emoji: "🫓", desc: "Vertical rotisserie meat in pita with tzatziki.", location: "Greek Corner, Al Khuwair, Muscat", directions: "Al Khuwair Street, opposite Al Khuwair Plaza.", price: "4-6 OMR" },
-                { name: "Baklava", emoji: "🍯", desc: "Famous sweet pastry from both cuisines.", location: "Bakeries & sweet shops in Muscat", directions: "Found in most sweet shops.", price: "2-4 OMR" },
-                { name: "Avgolemono", emoji: "🍋", desc: "Chicken, lemon, and egg soup.", location: "Greek Taverna, Qurum, Muscat", directions: "Qurum Beach, near Crowne Plaza.", price: "4-6 OMR" }
+            cities: {
+                muscat: { name: "Muscat", icon: "🎭", desc: "The vibrant capital of Oman", details: "The Omani capital, a blend of authenticity and modernity." },
+                nizwa: { name: "Nizwa", icon: "🌹", desc: "City of rich heritage", details: "Historic Nizwa Fort and its traditional souq." },
+                salalah: { name: "Salalah", icon: "🌧️", desc: "Magical Khareef paradise", details: "Beautiful Salalah Khareef and stunning nature." }
+            },
+            landmarks: {
+                muscat: ["Grand Mosque: Islamic masterpiece", "Royal Opera House: World-class venue", "Mutrah Souq: Traditional market", "National Museum: Oman's history", "Mutrah Corniche: Seaside view"],
+                nizwa: ["Nizwa Fort: Built by Imam Sultan", "Nizwa Souq: Famous for daggers", "Jebel Akhdar: Green mountains", "Falaj Daris: UNESCO site", "Al Rudaidah Fort: Historical"],
+                salalah: ["Wadi Darbat: Seasonal waterfalls", "Mughsail Beach: Blowholes", "Land of Frankincense: UNESCO", "Al Husn Souq: Frankincense & honey", "Jabal Samhan: Views"]
+            },
+            food: {
+                muscat: ["Omani Shuwa", "Majboos", "Khabeesa", "Balaleet", "Omani Halwa"],
+                nizwa: ["Omani Halwa", "Omani Shuwa", "Qabooli", "Harees", "Arsiya"],
+                salalah: ["Mandi", "Grilled fish", "Omani honey", "Milk halwa", "Dhofari coffee"]
+            },
+            restaurants: {
+                muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Chinese", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Asian Chinese restaurant", directions: "First floor" }],
+                nizwa: [{ name: "Great Wall Hot Pot", location: "Nizwa", price: "$5-10", rating: 4.9, cuisine: "Chinese", map: "https://maps.google.com/?q=Great+Wall+Hot+Pot+Nizwa", desc: "Chinese hot pot", directions: "Central Nizwa" }],
+                salalah: [{ name: "China Palace", location: "Salalah", price: "$5-10", rating: 4.2, cuisine: "Chinese", map: "https://maps.google.com/?q=China+Palace+Salalah", desc: "Chinese restaurant", directions: "Central Salalah" }]
+            },
+            hotels: {
+                muscat: [{ name: "Grand Hyatt Muscat", location: "Al Khuwair", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "5-star luxury hotel", directions: "Sultan Qaboos Street" }],
+                nizwa: [{ name: "Alila Jabal Akhdar", location: "Jebel Akhdar", price: "$150-300", rating: 4.9, map: "https://maps.google.com/?q=Alila+Jabal+Akhdar", desc: "Luxury resort", directions: "Jebel Akhdar" }],
+                salalah: [{ name: "Al Fanar - JW Marriott", location: "Salalah", price: "$120-250", rating: 4.8, map: "https://maps.google.com/?q=Al+Fanar+JW+Marriott+Salalah", desc: "Luxury resort", directions: "On Salalah Beach" }]
+            },
+            greekFoods: [
+                { name: "Souvlaki", emoji: "🥙", desc: "Grilled meat on skewers with bread and sauces.", location: "Greek restaurant, Qurum, Muscat", directions: "Main Qurum street", price: "5-7 OMR" },
+                { name: "Horiatiki (Greek Salad)", emoji: "🥗", desc: "Cucumber, tomato, olives, feta, olive oil.", location: "Cafes in Muscat", directions: "Most Greek restaurants", price: "3-5 OMR" }
             ]
         },
         zh: {
-            heroTitle: "🌊 Summer | 文化展览", heroDesc: "阿曼-希腊文化展览 | 艺术与遗产", welcome: "✨ 欢迎 — 探索文化桥梁 ✨",
+            heroTitle: "🌊 Summer | 文化展览", heroDesc: "阿曼-希腊文化展览", welcome: "✨ 欢迎 — 探索文化桥梁 ✨",
             whyTitle: "🇴🇲🇬🇷 文化桥梁", why1Title: "共同遗产", why1Desc: "历史联系", why2Title: "多元艺术", why2Desc: "融合艺术",
-            why3Title: "历史与古迹", why3Desc: "来自两种文明", why4Title: "多元美食", why4Desc: "希腊美食在阿曼", foodTitle: "🇬🇷 阿曼的希腊美食 🍽️",
+            why3Title: "历史", why3Desc: "来自两种文明", why4Title: "多元美食", why4Desc: "希腊美食在阿曼", foodTitle: "🇬🇷 阿曼的希腊美食 🍽️",
             footer: "© 2026 Summer | 阿曼-希腊文化展览",
-            cities: [
-                { name: "马斯喀特", icon: "🎭", desc: "充满活力的阿曼首都", details: "阿曼首都，传统与现代的融合。", highlights: ["大清真寺", "皇家歌剧院", "马托拉集市", "国家博物馆", "马托拉滨海大道"], restaurants: ["P.F. Chang's", "China Mood", "Bait Al Luban", "Turkish House", "The Steakhouse"] },
-                { name: "尼兹瓦", icon: "🌹", desc: "拥有丰富遗产的城市", details: "历史悠久的尼兹瓦堡和传统集市。", highlights: ["尼兹瓦堡", "尼兹瓦集市", "绿色山脈", "法莱吉达里斯", "阿尔鲁代达堡"], restaurants: ["Great Wall Hot Pot", "Peppercorns", "Nizwa Fort Restaurant", "Al Maidhan", "Jabal Cafe"] },
-                { name: "塞拉莱", icon: "🌧️", desc: "神奇的季风天堂", details: "美丽的塞拉莱季风季节。", highlights: ["季风季节", "达尔巴特干河", "穆格赛尔海滩", "乳香之地", "阿尔胡森集市"], restaurants: ["China Palace", "Khareef Salalah", "Al Mina", "Salalah Beach Restaurant", "Mughsail Restaurant"] }
-            ],
-            foods: [
-                { name: "苏弗拉基 (Souvlaki)", emoji: "🥙", desc: "烤串肉，配面包和酱汁。", location: "马斯喀特库鲁姆的希腊餐厅", directions: "库鲁姆主街，皇冠假日酒店附近。", price: "5-7 阿曼里亚尔" },
-                { name: "希腊沙拉 (Horiatiki)", emoji: "🥗", desc: "黄瓜、番茄、橄榄、羊乳酪、橄榄油。", location: "马斯喀特的咖啡馆和餐厅", directions: "大多数希腊餐厅都有。", price: "3-5 阿曼里亚尔" },
-                { name: "慕萨卡 (Moussaka)", emoji: "🍆", desc: "茄子肉末砂锅配白酱。", location: "Parthenon餐厅，阿尔穆日，马斯喀特", directions: "阿尔穆日南部，阿尔穆日综合大楼附近。", price: "7-10 阿曼里亚尔" },
-                { name: "吉罗斯 (Gyros)", emoji: "🫓", desc: "垂直烤肉，放在皮塔饼里，配酸奶黄瓜酱。", location: "Greek Corner，阿尔库维尔，马斯喀特", directions: "阿尔库维尔街，阿尔库维尔广场对面。", price: "4-6 阿曼里亚尔" },
-                { name: "巴克拉瓦 (Baklava)", emoji: "🍯", desc: "融合两种美食的著名甜点。", location: "马斯喀特的面包店和甜品店", directions: "大多数甜品店都有。", price: "2-4 阿曼里亚尔" },
-                { name: "阿夫戈莱莫诺 (Avgolemono)", emoji: "🍋", desc: "鸡肉柠檬蛋汤。", location: "Greek Taverna，库鲁姆，马斯喀特", directions: "库鲁姆海滩，皇冠假日酒店附近。", price: "4-6 阿曼里亚尔" }
+            cities: {
+                muscat: { name: "马斯喀特", icon: "🎭", desc: "充满活力的阿曼首都", details: "阿曼首都，传统与现代的融合。" },
+                nizwa: { name: "尼兹瓦", icon: "🌹", desc: "拥有丰富遗产的城市", details: "历史悠久的尼兹瓦堡和传统集市。" },
+                salalah: { name: "塞拉莱", icon: "🌧️", desc: "神奇的季风天堂", details: "美丽的塞拉莱季风季节。" }
+            },
+            landmarks: {
+                muscat: ["大清真寺：伊斯兰杰作", "皇家歌剧院：世界级场馆", "马托拉集市：传统市场", "国家博物馆：阿曼历史", "马托拉滨海大道：海景"],
+                nizwa: ["尼兹瓦堡", "尼兹瓦集市", "绿色山脈", "法莱吉达里斯", "阿尔鲁代达堡"],
+                salalah: ["达尔巴特干河", "穆格赛尔海滩", "乳香之地", "阿尔胡森集市", "萨姆汉山"]
+            },
+            food: {
+                muscat: ["舒瓦烤肉", "马吉布斯", "哈比萨", "巴拉利特", "阿曼哈尔瓦"],
+                nizwa: ["阿曼哈尔瓦", "舒瓦烤肉", "卡布利", "哈里斯", "阿尔西亚"],
+                salalah: ["曼迪", "烤鱼", "阿曼蜂蜜", "牛奶哈尔瓦", "佐法尔咖啡"]
+            },
+            restaurants: {
+                muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "58-108元", rating: 4.5, cuisine: "中餐", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "亚洲中餐厅", directions: "一楼" }],
+                nizwa: [{ name: "Great Wall Hot Pot", location: "尼兹瓦", price: "36-72元", rating: 4.9, cuisine: "中餐", map: "https://maps.google.com/?q=Great+Wall+Hot+Pot+Nizwa", desc: "中餐火锅", directions: "尼兹瓦市中心" }],
+                salalah: [{ name: "China Palace", location: "塞拉莱", price: "36-72元", rating: 4.2, cuisine: "中餐", map: "https://maps.google.com/?q=China+Palace+Salalah", desc: "中餐厅", directions: "塞拉莱市中心" }]
+            },
+            hotels: {
+                muscat: [{ name: "马斯喀特君悦酒店", location: "阿尔库维尔", price: "690-1080元", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "五星级豪华酒店", directions: "苏丹卡布斯大街" }],
+                nizwa: [{ name: "阿丽拉绿色山脈度假村", location: "绿色山脈", price: "1080-2160元", rating: 4.9, map: "https://maps.google.com/?q=Alila+Jabal+Akhdar", desc: "豪华度假村", directions: "绿色山脈" }],
+                salalah: [{ name: "Al Fanar JW万豪酒店", location: "塞拉莱", price: "864-1800元", rating: 4.8, map: "https://maps.google.com/?q=Al+Fanar+JW+Marriott+Salalah", desc: "豪华度假村", directions: "塞拉莱海滩" }]
+            },
+            greekFoods: [
+                { name: "苏弗拉基 (Souvlaki)", emoji: "🥙", desc: "烤串肉，配面包和酱汁。", location: "马斯喀特库鲁姆的希腊餐厅", directions: "库鲁姆主街", price: "5-7 阿曼里亚尔" },
+                { name: "希腊沙拉 (Horiatiki)", emoji: "🥗", desc: "黄瓜、番茄、橄榄、羊乳酪、橄榄油。", location: "马斯喀特的咖啡馆", directions: "大多数希腊餐厅", price: "3-5 阿曼里亚尔" }
             ]
         },
         el: {
-            heroTitle: "🌊 Summer | Πολιτιστική Έκθεση", heroDesc: "Ομανο-Ελληνική Πολιτιστική Έκθεση | Τέχνη & Κληρονομιά", welcome: "✨ Καλώς ήρθατε — Ανακαλύψτε πολιτιστικές γέφυρες ✨",
+            heroTitle: "🌊 Summer | Πολιτιστική Έκθεση", heroDesc: "Ομανο-Ελληνική Έκθεση", welcome: "✨ Καλώς ήρθατε — Πολιτιστικές γέφυρες ✨",
             whyTitle: "🇴🇲🇬🇷 Πολιτιστικές Γέφυρες", why1Title: "Κοινή Κληρονομιά", why1Desc: "Ιστορικοί δεσμοί", why2Title: "Ποικιλόμορφη Τέχνη", why2Desc: "Συγχώνευση τεχνών",
             why3Title: "Ιστορία", why3Desc: "Από τους δύο πολιτισμούς", why4Title: "Ποικιλόμορφη Κουζίνα", why4Desc: "Ελληνικό φαγητό στο Ομάν", foodTitle: "🇬🇷 Ελληνικό Φαγητό στο Ομάν 🍽️",
-            footer: "© 2026 Summer | Ομανο-Ελληνική Πολιτιστική Έκθεση",
-            cities: [
-                { name: "Μουσκάτ", icon: "🎭", desc: "Η ζωντανή πρωτεύουσα του Ομάν", details: "Πρωτεύουσα του Ομάν, συνδυασμός παράδοσης και νεωτερισμού.", highlights: ["Μεγάλο Τζαμί", "Βασιλική Όπερα", "Παζάρι Mutrah", "Εθνικό Μουσείο", "Παραλία Mutrah"], restaurants: ["P.F. Chang's", "China Mood", "Bait Al Luban", "Turkish House", "The Steakhouse"] },
-                { name: "Νίζουα", icon: "🌹", desc: "Πόλη πλούσιας κληρονομιάς", details: "Ιστορικό φρούριο Νίζουα και παραδοσιακό παζάρι.", highlights: ["Φρούριο Νίζουα", "Παζάρι Νίζουα", "Jebel Akhdar", "Falaj Daris", "Φρούριο Al Rudaidah"], restaurants: ["Great Wall Hot Pot", "Peppercorns", "Nizwa Fort Restaurant", "Al Maidhan", "Jabal Cafe"] },
-                { name: "Σαλάλα", icon: "🌧️", desc: "Μαγικός παράδεισος Khareef", details: "Όμορφο Khareef και εκπληκτική φύση.", highlights: ["Εποχή Khareef", "Wadi Darbat", "Παραλία Mughsail", "Γη του Λιβανιού", "Παζάρι Al Husn"], restaurants: ["China Palace", "Khareef Salalah", "Al Mina", "Salalah Beach Restaurant", "Mughsail Restaurant"] }
-            ],
-            foods: [
-                { name: "Σουβλάκι (Souvlaki)", emoji: "🥙", desc: "Ψητό κρέας σε σούβλες με ψωμί και σάλτσες.", location: "Ελληνικό εστιατόριο, Qurum, Μουσκάτ", directions: "Κεντρική οδός Qurum, κοντά στο Crowne Plaza.", price: "5-7 OMR" },
-                { name: "Χωριάτικη (Horiatiki)", emoji: "🥗", desc: "Αγγούρι, ντομάτα, ελιές, φέτα, ελαιόλαδο.", location: "Καφετέριες στο Μουσκάτ", directions: "Διατίθεται στα περισσότερα εστιατόρια.", price: "3-5 OMR" },
-                { name: "Μουσακάς (Moussaka)", emoji: "🍆", desc: "Μελιτζάνες με κιμά και μπεσαμέλ.", location: "Parthenon Restaurant, Al Mouj, Μουσκάτ", directions: "Νότιο Al Mouj, κοντά στο Al Mouj Complex.", price: "7-10 OMR" },
-                { name: "Γύρος (Gyros)", emoji: "🫓", desc: "Κατακόρυφο ψητό κρέας σε πίτα με τζατζίκι.", location: "Greek Corner, Al Khuwair, Μουσκάτ", directions: "Οδός Al Khuwair, απέναντι από το Al Khuwair Plaza.", price: "4-6 OMR" },
-                { name: "Μπακλαβάς (Baklava)", emoji: "🍯", desc: "Διάσημο γλυκό και από τις δύο κουζίνες.", location: "Ζαχαροπλαστεία στο Μουσκάτ", directions: "Διατίθεται στα περισσότερα ζαχαροπλαστεία.", price: "2-4 OMR" },
-                { name: "Αυγολέμονο (Avgolemono)", emoji: "🍋", desc: "Σούπα με κοτόπουλο, λεμόνι και αυγό.", location: "Greek Taverna, Qurum, Μουσκάτ", directions: "Παραλία Qurum, κοντά στο Crowne Plaza.", price: "4-6 OMR" }
+            footer: "© 2026 Summer | Ομανο-Ελληνική Έκθεση",
+            cities: {
+                muscat: { name: "Μουσκάτ", icon: "🎭", desc: "Η ζωντανή πρωτεύουσα του Ομάν", details: "Πρωτεύουσα, συνδυασμός παράδοσης και νεωτερισμού." },
+                nizwa: { name: "Νίζουα", icon: "🌹", desc: "Πόλη πλούσιας κληρονομιάς", details: "Ιστορικό φρούριο και παραδοσιακό παζάρι." },
+                salalah: { name: "Σαλάλα", icon: "🌧️", desc: "Μαγικός παράδεισος Khareef", details: "Όμορφο Khareef και εκπληκτική φύση." }
+            },
+            landmarks: {
+                muscat: ["Μεγάλο Τζαμί", "Βασιλική Όπερα", "Παζάρι Mutrah", "Εθνικό Μουσείο", "Παραλία Mutrah"],
+                nizwa: ["Φρούριο Νίζουα", "Παζάρι Νίζουα", "Jebel Akhdar", "Falaj Daris", "Φρούριο Al Rudaidah"],
+                salalah: ["Wadi Darbat", "Παραλία Mughsail", "Γη του Λιβανιού", "Παζάρι Al Husn", "Jabal Samhan"]
+            },
+            food: {
+                muscat: ["Shuwa", "Majboos", "Khabeesa", "Balaleet", "Omani Halwa"],
+                nizwa: ["Omani Halwa", "Shuwa", "Qabooli", "Harees", "Arsiya"],
+                salalah: ["Mandi", "Ψητό ψάρι", "Μέλι Ομάν", "Milk halwa", "Dhofari καφές"]
+            },
+            restaurants: {
+                muscat: [{ name: "P.F. Chang's", location: "Avenues Mall", price: "$8-15", rating: 4.5, cuisine: "Κινέζικο", map: "https://maps.google.com/?q=PF+Changs+Muscat", desc: "Ασιατικό εστιατόριο", directions: "Πρώτος όροφος" }],
+                nizwa: [{ name: "Great Wall Hot Pot", location: "Νίζουα", price: "$5-10", rating: 4.9, cuisine: "Κινέζικο", map: "https://maps.google.com/?q=Great+Wall+Hot+Pot+Nizwa", desc: "Κινέζικο hot pot", directions: "Κέντρο Νίζουα" }],
+                salalah: [{ name: "China Palace", location: "Σαλάλα", price: "$5-10", rating: 4.2, cuisine: "Κινέζικο", map: "https://maps.google.com/?q=China+Palace+Salalah", desc: "Κινέζικο εστιατόριο", directions: "Κέντρο Σαλάλα" }]
+            },
+            hotels: {
+                muscat: [{ name: "Grand Hyatt Μουσκάτ", location: "Al Khuwair", price: "$95-150", rating: 4.8, map: "https://maps.google.com/?q=Grand+Hyatt+Muscat", desc: "Πολυτελές 5 αστέρων", directions: "Λεωφόρος Σουλτάνου" }],
+                nizwa: [{ name: "Alila Jabal Akhdar", location: "Jebel Akhdar", price: "$150-300", rating: 4.9, map: "https://maps.google.com/?q=Alila+Jabal+Akhdar", desc: "Πολυτελές θέρετρο", directions: "Jebel Akhdar" }],
+                salalah: [{ name: "Al Fanar - JW Marriott", location: "Σαλάλα", price: "$120-250", rating: 4.8, map: "https://maps.google.com/?q=Al+Fanar+JW+Marriott+Salalah", desc: "Πολυτελές θέρετρο", directions: "Παραλία Σαλάλα" }]
+            },
+            greekFoods: [
+                { name: "Σουβλάκι (Souvlaki)", emoji: "🥙", desc: "Ψητό κρέας σε σούβλες.", location: "Ελληνικό εστιατόριο, Qurum", directions: "Κεντρική οδός Qurum", price: "5-7 OMR" },
+                { name: "Χωριάτικη (Horiatiki)", emoji: "🥗", desc: "Αγγούρι, ντομάτα, ελιές, φέτα.", location: "Καφετέριες στο Μουσκάτ", directions: "Περισσότερα εστιατόρια", price: "3-5 OMR" }
             ]
         }
     };
 
     let currentLang = 'ar';
+    let currentCityId = null;
+
+    function renderStars(rating) { let s=''; for(let i=0;i<Math.floor(rating);i++) s+='★'; for(let i=0;i<5-Math.floor(rating);i++) s+='☆'; return `<div class="stars">${s} (${rating})</div>`; }
+
+    function openDetailPage(type, cityId, itemIndex, category) {
+        let item;
+        if (category === 'restaurant') item = content[currentLang].restaurants[cityId][itemIndex];
+        else if (category === 'hotel') item = content[currentLang].hotels[cityId][itemIndex];
+        else return;
+        if (!item) return;
+        const t = content[currentLang];
+        const container = document.getElementById('detailPageContainer');
+        container.innerHTML = `
+            <div class="detail-page active-detail">
+                <button class="back-btn" onclick="closeDetailPage()">🏠 ${currentLang === 'ar' ? 'العودة للمدينة' : (currentLang === 'en' ? 'Back to City' : (currentLang === 'zh' ? '返回城市' : 'Επιστροφή στην Πόλη'))}</button>
+                <div class="detail-header"><h2>${item.name}</h2></div>
+                ${renderStars(item.rating)}
+                <div class="detail-info"><h3>📝 ${currentLang === 'ar' ? 'الوصف' : (currentLang === 'en' ? 'Description' : (currentLang === 'zh' ? '描述' : 'Περιγραφή'))}</h3><p>${item.desc}</p></div>
+                <div class="detail-location"><h3>📍 ${currentLang === 'ar' ? 'الموقع' : (currentLang === 'en' ? 'Location' : (currentLang === 'zh' ? '位置' : 'Τοποθεσία'))}</h3><p>${item.location}</p></div>
+                <div class="detail-info"><h3>🚗 ${currentLang === 'ar' ? 'الاتجاهات' : (currentLang === 'en' ? 'Directions' : (currentLang === 'zh' ? '路线' : 'Οδηγίες'))}</h3><p>${item.directions}</p></div>
+                <div class="detail-price">💰 ${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : (currentLang === 'zh' ? '价格' : 'Τιμή'))}: ${item.price}</div>
+                <a href="${item.map}" target="_blank" class="map-link">🗺️ ${currentLang === 'ar' ? 'عرض على الخريطة' : (currentLang === 'en' ? 'View on Map' : (currentLang === 'zh' ? '在地图上查看' : 'Προβολή στον Χάρτη'))}</a>
+            </div>
+        `;
+        document.getElementById('cityPagesContainer').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'none';
+    }
+
+    function openCityPage(cityId) {
+        currentCityId = cityId;
+        const c = content[currentLang];
+        const city = c.cities[cityId];
+        const landmarks = c.landmarks[cityId];
+        const foods = c.food[cityId];
+        const restaurants = c.restaurants[cityId];
+        const hotels = c.hotels[cityId];
+        
+        const container = document.getElementById('cityPagesContainer');
+        container.innerHTML = `
+            <div class="city-page active-page">
+                <button class="back-btn" onclick="backToHome()">🏠 ${currentLang === 'ar' ? 'العودة للرئيسية' : (currentLang === 'en' ? 'Back to Home' : (currentLang === 'zh' ? '返回首页' : 'Επιστροφή στην Αρχική'))}</button>
+                <div class="city-header"><h2>${city.name}</h2></div>
+                
+                <div class="section"><h3>🏛️ ${currentLang === 'ar' ? 'المعالم السياحية' : (currentLang === 'en' ? 'Landmarks' : (currentLang === 'zh' ? '地标' : 'Αξιοθέατα'))}</h3>
+                    <div class="items-grid">${landmarks.map(l => `<div class="item-card"><h4>${l.split(':')[0]}</h4><p>${l.split(':')[1] || ''}</p>${renderStars(4.8)}</div>`).join('')}</div>
+                </div>
+                
+                <div class="section"><h3>🍽️ ${currentLang === 'ar' ? 'الأكلات الشعبية' : (currentLang === 'en' ? 'Traditional Food' : (currentLang === 'zh' ? '传统美食' : 'Παραδοσιακό Φαγητό'))}</h3>
+                    <div class="items-grid">${foods.map(f => `<div class="item-card"><h4>${f}</h4><p>${currentLang === 'ar' ? 'أكلة عمانية شهيرة' : (currentLang === 'en' ? 'Famous Omani dish' : (currentLang === 'zh' ? '著名的阿曼菜' : 'Διάσημο Ομανικό πιάτο'))}</p>${renderStars(4.7)}</div>`).join('')}</div>
+                </div>
+                
+                <div class="section"><h3>🍽️ ${currentLang === 'ar' ? 'المطاعم' : (currentLang === 'en' ? 'Restaurants' : (currentLang === 'zh' ? '餐厅' : 'Εστιατόρια'))}</h3>
+                    <div class="items-grid">${restaurants.map((r, idx) => `<div class="item-card" onclick="openDetailPage('restaurant', '${cityId}', ${idx}, 'restaurant')"><h4>🍽️ ${r.name}</h4><p>${r.cuisine} | ${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${r.price}</p>${renderStars(r.rating)}</div>`).join('')}</div>
+                </div>
+                
+                <div class="section"><h3>🏨 ${currentLang === 'ar' ? 'الفنادق' : (currentLang === 'en' ? 'Hotels' : (currentLang === 'zh' ? '酒店' : 'Ξενοδοχεία'))}</h3>
+                    <div class="items-grid">${hotels.map((h, idx) => `<div class="item-card" onclick="openDetailPage('hotel', '${cityId}', ${idx}, 'hotel')"><h4>🏨 ${h.name}</h4><p>${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : '价格')}: ${h.price}</p>${renderStars(h.rating)}</div>`).join('')}</div>
+                </div>
+            </div>
+        `;
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('detailPageContainer').innerHTML = '';
+        container.style.display = 'block';
+    }
+
+    function backToHome() { currentCityId = null; renderHome(); }
+    function closeDetailPage() { if (currentCityId) openCityPage(currentCityId); else backToHome(); }
 
     function renderHome() {
         const c = content[currentLang];
@@ -320,28 +517,18 @@
         document.getElementById('foodTitle').innerHTML = c.foodTitle;
         document.getElementById('footerText').innerHTML = c.footer;
 
-        document.getElementById('greekFoodGrid').innerHTML = c.foods.map((food, idx) => `<div class="food-card" onclick="openFoodDetail(${idx})"><div class="food-emoji">${food.emoji}</div><h3>${food.name}</h3><p>${food.desc.substring(0, 50)}...</p></div>`).join('');
-        document.getElementById('citiesGrid').innerHTML = c.cities.map((city, idx) => `<div class="city-card" onclick="openCityDetail(${idx})"><div class="city-icon">${city.icon}</div><h3>${city.name}</h3><p>${city.desc}</p></div>`).join('');
+        document.getElementById('greekFoodGrid').innerHTML = c.greekFoods.map((food, idx) => `<div class="food-card" onclick="openGreekFoodDetail(${idx})"><div class="food-emoji">${food.emoji}</div><h3>${food.name}</h3><p>${food.desc.substring(0, 50)}...</p></div>`).join('');
+        
+        const cityKeys = ['muscat', 'nizwa', 'salalah'];
+        document.getElementById('citiesGrid').innerHTML = cityKeys.map(key => `<div class="city-card" onclick="openCityPage('${key}')"><div class="city-icon">${c.cities[key].icon}</div><h3>${c.cities[key].name}</h3><p>${c.cities[key].desc}</p></div>`).join('');
+        
+        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('cityPagesContainer').innerHTML = '';
+        document.getElementById('detailPageContainer').innerHTML = '';
     }
 
-    function openCityDetail(index) {
-        const city = content[currentLang].cities[index];
-        const t = content[currentLang];
-        const container = document.getElementById('detailPageContainer');
-        container.innerHTML = `
-            <div class="detail-page active-detail">
-                <button class="back-btn" onclick="closeDetailPage()">🏠 ${currentLang === 'ar' ? 'العودة للرئيسية' : (currentLang === 'en' ? 'Back to Home' : (currentLang === 'zh' ? '返回首页' : 'Επιστροφή'))}</button>
-                <div class="detail-header"><h2>${city.name}</h2></div>
-                <div class="detail-info"><h3>📝 ${currentLang === 'ar' ? 'الوصف' : (currentLang === 'en' ? 'Description' : (currentLang === 'zh' ? '描述' : 'Περιγραφή'))}</h3><p>${city.details}</p></div>
-                <div class="detail-info"><h3>⭐ ${currentLang === 'ar' ? 'أبرز المعالم' : (currentLang === 'en' ? 'Highlights' : (currentLang === 'zh' ? '亮点' : 'Σημεία Ενδιαφέροντος'))}</h3><ul style="margin-right:1rem;">${city.highlights.map(h => `<li>${h}</li>`).join('')}</ul></div>
-                <div class="detail-info"><h3>🍽️ ${currentLang === 'ar' ? 'أشهر المطاعم' : (currentLang === 'en' ? 'Famous Restaurants' : (currentLang === 'zh' ? '著名餐厅' : 'Διάσημα Εστιατόρια'))}</h3><ul style="margin-right:1rem;">${city.restaurants.map(r => `<li>${r}</li>`).join('')}</ul></div>
-            </div>
-        `;
-        document.getElementById('mainPage').style.display = 'none';
-    }
-
-    function openFoodDetail(index) {
-        const food = content[currentLang].foods[index];
+    function openGreekFoodDetail(index) {
+        const food = content[currentLang].greekFoods[index];
         const container = document.getElementById('detailPageContainer');
         container.innerHTML = `
             <div class="detail-page active-detail">
@@ -351,15 +538,11 @@
                 <div class="detail-location"><h3>📍 ${currentLang === 'ar' ? 'الموقع' : (currentLang === 'en' ? 'Location' : (currentLang === 'zh' ? '位置' : 'Τοποθεσία'))}</h3><p>${food.location}</p></div>
                 <div class="detail-info"><h3>🚗 ${currentLang === 'ar' ? 'الاتجاهات' : (currentLang === 'en' ? 'Directions' : (currentLang === 'zh' ? '路线' : 'Οδηγίες'))}</h3><p>${food.directions}</p></div>
                 <div class="detail-price">💰 ${currentLang === 'ar' ? 'السعر' : (currentLang === 'en' ? 'Price' : (currentLang === 'zh' ? '价格' : 'Τιμή'))}: ${food.price}</div>
-                <a href="https://maps.google.com/?q=${encodeURIComponent(food.location)}" target="_blank" style="display:inline-block; background:#1E88E5; color:white; padding:0.3rem 0.8rem; border-radius:20px; text-decoration:none; font-size:0.8rem; margin-top:0.5rem;">🗺️ ${currentLang === 'ar' ? 'عرض على الخريطة' : (currentLang === 'en' ? 'View on Map' : (currentLang === 'zh' ? '在地图上查看' : 'Προβολή στον Χάρτη'))}</a>
+                <a href="https://maps.google.com/?q=${encodeURIComponent(food.location)}" target="_blank" class="map-link">🗺️ ${currentLang === 'ar' ? 'عرض على الخريطة' : (currentLang === 'en' ? 'View on Map' : (currentLang === 'zh' ? '在地图上查看' : 'Προβολή στον Χάρτη'))}</a>
             </div>
         `;
         document.getElementById('mainPage').style.display = 'none';
-    }
-
-    function closeDetailPage() {
-        document.getElementById('detailPageContainer').innerHTML = '';
-        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('cityPagesContainer').style.display = 'none';
     }
 
     function copyEmail() { navigator.clipboard.writeText('iilkqj@gmail.com'); const fb = document.getElementById('copyFeedback'); fb.innerText = '✅ تم النسخ!'; setTimeout(() => fb.innerText = '', 2000); }
